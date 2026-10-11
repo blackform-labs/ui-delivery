@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "rules": [
+    {
+      "id": "ui-primary-task",
+      "revision": 1,
+      "statement": "Keep essential task information discoverable; disclose secondary detail where useful.",
+      "origin": "source-derived",
+      "source_ids": [
+        "nng-disclosure",
+        "govuk-accordion"
+      ],
+      "applies_when": "Primary and secondary information share a screen.",
+      "level": "advisory",
+      "verification": [
+        {
+          "method": "human-task",
+          "observe": "Can a participant find and use necessary information without hints?"
+        }
+      ],
+      "exceptions": "Continuous reading and comparison may require extensive visible content.",
+      "examples": {
+        "good": "Clear status and accessible supporting evidence.",
+        "failure": "Essential outcomes lost among repeated empty panels."
+      }
+    },
+    {
+      "id": "ui-comparison",
+      "revision": 1,
+      "statement": "Keep evidence needed for comparison jointly accessible.",
+      "origin": "source-derived",
+      "source_ids": [
+        "carbon-tabs"
+      ],
+      "applies_when": "The task requires comparing options or attributes.",
+      "level": "advisory",
+      "verification": [
+        {
+          "method": "design-review",
+          "observe": "Can necessary attributes be compared without remembering mutually hidden panels?"
+        }
+      ],
+      "exceptions": "Tabs can suit other related same-context sections.",
+      "examples": {
+        "good": "Aligned attributes visible together.",
+        "failure": "Comparison requires repeated tab switching."
+      }
+    },
+    {
+      "id": "ui-state-truth",
+      "revision": 1,
+      "statement": "Distinguish loading, empty, partial, failed and unknown states when present.",
+      "origin": "team-policy",
+      "source_ids": [],
+      "applies_when": "The affected product has these states.",
+      "level": "required",
+      "verification": [
+        {
+          "method": "automated",
+          "observe": "Exercise supplied state fixtures and inspect the displayed state content."
+        }
+      ],
+      "exceptions": "Do not invent states absent from the product.",
+      "examples": {
+        "good": "Pending source remains pending.",
+        "failure": "Missing evidence appears as a zero or success."
+      },
+      "rationale": "Prevent decisions based on missing evidence."
+    },
+    {
+      "id": "ui-web-access",
+      "revision": 1,
+      "statement": "Apply the web accessibility target recorded in the product profile.",
+      "origin": "source-derived",
+      "source_ids": [
+        "wcag22",
+        "aria-apg"
+      ],
+      "applies_when": "Web content with an adopted accessibility commitment.",
+      "level": "required",
+      "verification": [
+        {
+          "method": "design-review",
+          "observe": "Record applicable criterion checks plus keyboard and manual review."
+        }
+      ],
+      "exceptions": "Automated results alone cannot establish full conformance.",
+      "examples": {
+        "good": "Known criteria and manual gaps are explicit.",
+        "failure": "An automated score is called accessibility certification."
+      }
+    },
+    {
+      "id": "ui-native-access",
+      "revision": 1,
+      "statement": "Respect target-native input and accessibility conventions.",
+      "origin": "source-derived",
+      "source_ids": [
+        "apple-accessibility"
+      ],
+      "applies_when": "A native interface; Apple guidance applies only to Apple targets.",
+      "level": "advisory",
+      "verification": [
+        {
+          "method": "design-review",
+          "observe": "Inspect target runtime and relevant assistive-technology behavior."
+        }
+      ],
+      "exceptions": "Other native targets require their own applicable sources.",
+      "examples": {
+        "good": "Actual native runtime evidence with version.",
+        "failure": "Browser proof used for native semantics."
+      }
+    },
+    {
+      "id": "ui-motion",
+      "revision": 1,
+      "statement": "Make motion useful and provide appropriate reduced-motion behavior.",
+      "origin": "source-derived",
+      "source_ids": [
+        "gsap-media",
+        "apple-motion",
+        "apple-accessibility"
+      ],
+      "applies_when": "Affected interface uses motion.",
+      "level": "advisory",
+      "verification": [
+        {
+          "method": "design-review",
+          "observe": "Exercise normal and reduced-motion preferences in the actual renderer."
+        }
+      ],
+      "exceptions": "GSAP is optional; source applicability follows the renderer.",
+      "examples": {
+        "good": "State changes remain understandable under reduced motion.",
+        "failure": "Essential action depends on spatial animation."
+      }
+    },
+    {
+      "id": "ui-visual-proof",
+      "revision": 1,
+      "statement": "Review rendered states and compare approved baselines in a controlled environment.",
+      "origin": "source-derived",
+      "source_ids": [
+        "playwright-visual"
+      ],
+      "applies_when": "Rendered UI changes or visual stability claims.",
+      "level": "advisory",
+      "verification": [
+        {
+          "method": "design-review",
+          "observe": "Inspect relevant rendered states; record baseline review and environment for comparisons."
+        }
+      ],
+      "exceptions": "Matching screenshots detect stability, not initial quality.",
+      "examples": {
+        "good": "Reviewed baseline and new state both serve the task.",
+        "failure": "A poor layout passes because its screenshot matches."
+      }
+    },
+    {
+      "id": "ui-task-proof",
+      "revision": 1,
+      "statement": "Evaluate realistic goals without coaching a click sequence.",
+      "origin": "source-derived",
+      "source_ids": [
+        "govuk-usability"
+      ],
+      "applies_when": "A usability claim needs participant evidence.",
+      "level": "advisory",
+      "verification": [
+        {
+          "method": "human-task",
+          "observe": "Observe likely users attempting the goal without navigation hints."
+        }
+      ],
+      "exceptions": "Agent simulations remain labeled simulations.",
+      "examples": {
+        "good": "Uncoached task difficulties are retained.",
+        "failure": "A coached agent demo is called human acceptance."
+      }
+    },
+    {
+      "id": "ui-scope",
+      "revision": 1,
+      "statement": "Match process and edits to task, existing authorization, and affected surface.",
+      "origin": "team-policy",
+      "source_ids": [],
+      "applies_when": "Every UI task.",
+      "level": "required",
+      "verification": [
+        {
+          "method": "design-review",
+          "observe": "Compare requested scope with changed files and process cost."
+        }
+      ],
+      "exceptions": "Tiny edits bypass structural design work.",
+      "examples": {
+        "good": "A label correction preserves approved layout.",
+        "failure": "A review-only request edits product files."
+      },
+      "rationale": "Prevent unnecessary redesign and work."
+    },
+    {
+      "id": "ui-evidence-truth",
+      "revision": 1,
+      "statement": "Tie claims to actual checks and keep missing proof visible.",
+      "origin": "team-policy",
+      "source_ids": [],
+      "applies_when": "Every verification claim.",
+      "level": "required",
+      "verification": [
+        {
+          "method": "automated",
+          "observe": "Validate record/link integrity, then review claim-to-artifact consistency."
+        }
+      ],
+      "exceptions": "Record checks cannot authenticate human claims or certify quality.",
+      "examples": {
+        "good": "Missing runtime is recorded not-run.",
+        "failure": "Unavailable tooling is reported passed."
+      },
+      "rationale": "Prevent false completion."
+    },
+    {
+      "id": "ui-layout-policy",
+      "revision": 1,
+      "statement": "Choose application space, reading measure and comparison width by task; share margins and alignment across related product screens and explain intentional exceptions.",
+      "origin": "team-policy",
+      "rationale": "Separate shell capacity from text readability and comparison needs; prevent arbitrary global widths and cross-product style homogenization.",
+      "source_ids": [
+        "carbon-grid",
+        "govuk-layout",
+        "wcag-visual-presentation",
+        "wcag-reflow"
+      ],
+      "applies_when": "Layout structure or width changes, or related screens need a reusable product policy. Platform-specific measurements and accessibility checks come from the matching adapter.",
+      "level": "advisory",
+      "verification": [
+        {
+          "method": "design-review",
+          "observe": "Compare related rendered screens for alignment, readable measure, jointly usable comparison and justified exceptions at relevant sizes."
+        },
+        {
+          "method": "automated",
+          "observe": "Record available content space, text geometry, overflow and affected interactions in the actual renderer; these observations do not establish usability."
+        }
+      ],
+      "exceptions": "Record scope, rationale, owner decision, remaining risk and review trigger. Product-specific widths and scrolling can be appropriate; deviations never turn failed accessibility criteria into passes.",
+      "examples": {
+        "good": "Shared application margins with a narrower reading column and sufficient comparison width.",
+        "failure": "85% width or one fixed maximum imposed on all products; prose widened merely to fill a display."
+      }
+    }
+  ]
+}

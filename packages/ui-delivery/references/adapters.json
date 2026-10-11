@@ -1,0 +1,318 @@
+{
+  "schema_version": 1,
+  "adapters": [
+    {
+      "id": "browser",
+      "revision": 3,
+      "matches": "Actual browser-rendered frontend.",
+      "required_capabilities": [
+        "Runnable target browser with exact build and OS identification",
+        "Desktop/narrow viewport and screenshot inspection",
+        "Keyboard events, DOM semantics and visible focus inspection",
+        "Actual browser zoom control for 200 percent checks",
+        "Applicable accessibility automation and separately available assistive technology",
+        "Relevant fixture states and independent task review"
+      ],
+      "source_ids": [
+        "wcag22",
+        "aria-apg",
+        "playwright-visual",
+        "vercel-guidelines",
+        "storybook-access",
+        "wcag-resize",
+        "wcag-reflow",
+        "playwright-access",
+        "carbon-grid",
+        "govuk-layout",
+        "wcag-visual-presentation"
+      ],
+      "rule_mapping": [
+        {
+          "rule_id": "ui-primary-task",
+          "interpretation": "Inspect task decision/action and preserve legitimate continuous reading."
+        },
+        {
+          "rule_id": "ui-comparison",
+          "interpretation": "Exercise jointly accessible attributes at desktop and narrow sizes."
+        },
+        {
+          "rule_id": "ui-state-truth",
+          "interpretation": "Exercise present loading, empty, partial, failed, unknown and success states; do not invent absent application behavior."
+        },
+        {
+          "rule_id": "ui-web-access",
+          "interpretation": "Adopt scoped criteria, inspect semantics, keyboard, focus, contrast, text resize and reflow; automated and manual gaps stay distinct."
+        },
+        {
+          "rule_id": "ui-visual-proof",
+          "interpretation": "Inspect actual screenshots and reject capture defects; matching a baseline is not approval."
+        },
+        {
+          "rule_id": "ui-task-proof",
+          "interpretation": "Independent agent review is simulation; human acceptance needs real participants."
+        },
+        {
+          "rule_id": "ui-scope",
+          "interpretation": "For a label correction preserve layout, styles and handlers and check intrinsic sizing."
+        },
+        {
+          "rule_id": "ui-evidence-truth",
+          "interpretation": "Record exact engine, OS and input/environment; missing checks remain unverified."
+        },
+        {
+          "rule_id": "ui-layout-policy",
+          "interpretation": "Apply the product policy to space after browser navigation, shared responsive margins, independent text measure and useful comparison. Check narrow, standard/wide desktop and actual 200% zoom; distinguish AAA 1.4.8 from AA reflow and scoped two-dimensional exceptions. See browser.md."
+        }
+      ],
+      "verification_methods": [
+        "automated",
+        "design-review",
+        "human-task"
+      ],
+      "limitations": [
+        "Experimental local synthetic evidence only; no broad framework/browser compatibility or complete WCAG conformance claim.",
+        "Screen readers, physical mobile devices, other engines and representative performance remain unverified.",
+        "No human participant evidence; agent review does not fill usability_evidence.",
+        "No Apple-native, Wails shell, Fyne, terminal or native reduced-motion proof.",
+        "Comparison row labels wrap midword at 320px; recorded nonblocking readability advisory pending human review."
+      ],
+      "support": {
+        "documentation_status": "reviewed-scoped",
+        "implementation_evidence": [
+          {
+            "os": "macOS 27.0.1 (26A434), arm64",
+            "framework_version": "Native HTML/CSS/JavaScript; no UI framework; Playwright 1.64.0; axe-core 4.13.0",
+            "runtime": "Google Chrome 154.0.8037.98 headless; Node.js 26.8.1",
+            "fixture_revision": "Phase 3A E01/E02/E03/E07/E04; SHA-256 manifests in per-run evidence; E03 corrected after independent review",
+            "checks": [
+              "Desktop 1440x900 and narrow 390x844/320x844 rendered layouts",
+              "Keyboard forward/reverse tab and activation; focus outline/viewport/occlusion observations",
+              "axe-core 4.13.0 WCAG A/AA tagged scans; raw incomplete findings retained",
+              "Chrome tab zoom 200 percent, DPR/viewport/zoom API proof and direct CDP screenshots",
+              "Synthetic report gaps, continuous article, comparison disclosure/clipboard success and failure, settings submit"
+            ],
+            "results": [
+              "Scoped synthetic checks passed; first zoom screenshots had a capture defect and were retained, then corrected using direct CDP viewport capture.",
+              "Independent agent task review is recorded separately in Phase 3A development evidence; human acceptance pending."
+            ]
+          },
+          {
+            "os": "macOS 27.0.1 (26A434), arm64",
+            "framework_version": "Native HTML/CSS/JavaScript; no application framework",
+            "runtime": "Google Chrome 154.0.8037.98 headless; Playwright 1.64.0; axe-core 4.13.0",
+            "fixture_revision": "Harbor related-screen refinement, ui-delivery 0.3.1; project-local Phase 3A refinement receipt pins hashes",
+            "checks": [
+              "320x844, 1440x900 and 2560x1440 CSS viewport geometry and screenshots",
+              "Actual Chrome tab zoom 2 at 720x456 CSS viewport; no pinch scaling",
+              "Related-screen alignment, reading measure, paired comparison, unchanged facts, keyboard and clipboard states"
+            ],
+            "results": [
+              "Bounded synthetic browser evidence only; independent agent review is separate from mechanical checks.",
+              "No native support, human acceptance, screen-reader or full WCAG conformance claim."
+            ]
+          }
+        ],
+        "usability_evidence": []
+      }
+    },
+    {
+      "id": "apple-native",
+      "revision": 1,
+      "matches": "SwiftUI/UIKit/AppKit plus actual Apple target.",
+      "required_capabilities": [
+        "target Apple SDK/runtime",
+        "native accessibility inspection"
+      ],
+      "source_ids": [
+        "apple-accessibility",
+        "apple-motion"
+      ],
+      "rule_mapping": [
+        {
+          "rule_id": "ui-native-access",
+          "interpretation": "Test native input, text sizing and assistive technology."
+        },
+        {
+          "rule_id": "ui-motion",
+          "interpretation": "Exercise system reduced-motion setting."
+        }
+      ],
+      "verification_methods": [
+        "design-review",
+        "automated"
+      ],
+      "limitations": [
+        "Documentation-only candidate; no implemented adapter or tested runtime.",
+        "Human usability evidence absent; use sources only within their recorded retrieval scope."
+      ],
+      "support": {
+        "documentation_status": "reviewed-scoped",
+        "implementation_evidence": [],
+        "usability_evidence": []
+      }
+    },
+    {
+      "id": "wails",
+      "revision": 1,
+      "matches": "Wails dependency and actual web frontend.",
+      "required_capabilities": [
+        "installed-version Wails runtime",
+        "packaged desktop window",
+        "web-content tooling"
+      ],
+      "source_ids": [
+        "wails-intro",
+        "wcag22",
+        "aria-apg"
+      ],
+      "rule_mapping": [
+        {
+          "rule_id": "ui-web-access",
+          "interpretation": "Test embedded web content."
+        },
+        {
+          "rule_id": "ui-evidence-truth",
+          "interpretation": "Separate web-content evidence from native window/menu/bridge evidence."
+        }
+      ],
+      "verification_methods": [
+        "design-review",
+        "automated"
+      ],
+      "limitations": [
+        "Documentation-only candidate; no implemented adapter or tested runtime.",
+        "Human usability evidence absent; use sources only within their recorded retrieval scope."
+      ],
+      "support": {
+        "documentation_status": "reviewed-scoped",
+        "implementation_evidence": [],
+        "usability_evidence": []
+      }
+    },
+    {
+      "id": "fyne",
+      "revision": 1,
+      "matches": "Fyne imports with toolkit-rendered GUI.",
+      "required_capabilities": [
+        "installed-version Fyne runtime",
+        "target display and input"
+      ],
+      "source_ids": [
+        "fyne-start"
+      ],
+      "rule_mapping": [
+        {
+          "rule_id": "ui-primary-task",
+          "interpretation": "Inspect toolkit hierarchy and interaction."
+        },
+        {
+          "rule_id": "ui-evidence-truth",
+          "interpretation": "Record toolkit scaling/input proof and accessibility gaps; DOM tools do not cover it."
+        }
+      ],
+      "verification_methods": [
+        "design-review",
+        "automated"
+      ],
+      "limitations": [
+        "Documentation-only candidate; no implemented adapter or tested runtime.",
+        "Human usability evidence absent; use sources only within their recorded retrieval scope."
+      ],
+      "support": {
+        "documentation_status": "reviewed-scoped",
+        "implementation_evidence": [],
+        "usability_evidence": []
+      }
+    },
+    {
+      "id": "terminal",
+      "revision": 1,
+      "matches": "Bubble Tea or equivalent terminal renderer.",
+      "required_capabilities": [
+        "target terminal and framework runtime",
+        "keyboard input"
+      ],
+      "source_ids": [
+        "bubbletea"
+      ],
+      "rule_mapping": [
+        {
+          "rule_id": "ui-state-truth",
+          "interpretation": "Check readable terminal state and error output."
+        },
+        {
+          "rule_id": "ui-evidence-truth",
+          "interpretation": "Record terminal dimensions, compatibility and assistive-technology gaps."
+        }
+      ],
+      "verification_methods": [
+        "design-review",
+        "automated"
+      ],
+      "limitations": [
+        "Documentation-only candidate; no implemented adapter or tested runtime.",
+        "Human usability evidence absent; use sources only within their recorded retrieval scope."
+      ],
+      "support": {
+        "documentation_status": "reviewed-scoped",
+        "implementation_evidence": [],
+        "usability_evidence": []
+      }
+    },
+    {
+      "id": "gsap",
+      "revision": 2,
+      "matches": "GSAP selected for actual web motion.",
+      "required_capabilities": [
+        "Installed GSAP version plus source/lockfile identity",
+        "Browser preference emulation for initial values and live changes",
+        "Component lifecycle control and DOM/tween/listener observations",
+        "Representative hardware for performance claims (unavailable in this slice)"
+      ],
+      "source_ids": [
+        "gsap-media",
+        "gsap-context"
+      ],
+      "rule_mapping": [
+        {
+          "rule_id": "ui-motion",
+          "interpretation": "Exercise both preferences, preference changes, cleanup and representative performance."
+        }
+      ],
+      "verification_methods": [
+        "automated",
+        "design-review",
+        "human-task"
+      ],
+      "limitations": [
+        "Experimental local synthetic evidence only; no broad framework/browser compatibility or complete WCAG conformance claim.",
+        "Screen readers, physical mobile devices, other engines and representative performance remain unverified.",
+        "No human participant evidence; agent review does not fill usability_evidence.",
+        "No Apple-native, Wails shell, Fyne, terminal or native reduced-motion proof."
+      ],
+      "support": {
+        "documentation_status": "reviewed-scoped",
+        "implementation_evidence": [
+          {
+            "os": "macOS 27.0.1 (26A434), arm64",
+            "framework_version": "GSAP 3.15.0; native JavaScript lifecycle; Playwright 1.64.0",
+            "runtime": "Google Chrome 154.0.8037.98 headless; Node.js 26.8.1",
+            "fixture_revision": "Phase 3A E04 revision 1; exact product hashes in runtime evidence",
+            "checks": [
+              "Initial reduce/no-preference and both live transitions including mid-animation",
+              "Repeated mount/unmount and idempotent mount; CDP click listener inspection and GSAP child counts",
+              "Post-unmount preference/event checks after 1000ms, exceeding 850ms animation duration",
+              "Rapid reversals and 320px separated-layer captures",
+              "Vendor-unavailable readable static fallback"
+            ],
+            "results": [
+              "Scoped synthetic checks passed; first zoom screenshots had a capture defect and were retained, then corrected using direct CDP viewport capture.",
+              "Independent agent task review is recorded separately in Phase 3A development evidence; human acceptance pending."
+            ]
+          }
+        ],
+        "usability_evidence": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,1168 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-11",
+  "sources": [
+    {
+      "id": "wcag22",
+      "title": "Web Content Accessibility Guidelines 2.2",
+      "publisher": "W3C",
+      "url": "https://www.w3.org/TR/2024/REC-WCAG22-20241212/",
+      "section": "Success criteria and conformance",
+      "kind": "standard",
+      "version": "Recommendation, 2024-12-12",
+      "checked_on": "2026-10-10",
+      "retrieval": "Content reviewed via current WCAG 2.2 URL; dated version identified.",
+      "summary": "Testable accessibility criteria cover web content. Product conformance targets must identify the level and scope; individual test results do not establish full conformance.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Not a universal visual design specification or a native toolkit test suite.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "aria-apg",
+      "title": "ARIA Authoring Practices Guide",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/ARIA/apg/",
+      "section": "Patterns and practices overview",
+      "kind": "guidance",
+      "version": "Living guide; no release pinned",
+      "checked_on": "2026-10-10",
+      "retrieval": "Overview reviewed.",
+      "summary": "Provides patterns for accessible web widget behavior and semantics. Consult the relevant pattern when implementing a custom widget.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Informative implementation guidance, not the normative ARIA specification. Specific patterns need review when used.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "nng-disclosure",
+      "title": "Progressive Disclosure",
+      "publisher": "Nielsen Norman Group",
+      "url": "https://www.nngroup.com/articles/progressive-disclosure/",
+      "section": "Primary versus secondary interface complexity",
+      "kind": "guidance",
+      "version": "Article; page reviewed without release pin",
+      "checked_on": "2026-10-10",
+      "retrieval": "Article content reviewed.",
+      "summary": "Prioritize common tasks and expose secondary complexity when needed. Decide what is primary through task knowledge and testing.",
+      "applies_to": [
+        "shared-core"
+      ],
+      "limits": "Does not prescribe accordions, tabs, a screen-height limit, or hiding necessary comparisons.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "govuk-accordion",
+      "title": "Accordion",
+      "publisher": "GOV.UK Design System",
+      "url": "https://design-system.service.gov.uk/components/accordion/",
+      "section": "When to use and when not to use",
+      "kind": "guidance",
+      "version": "Living component guidance",
+      "checked_on": "2026-10-10",
+      "retrieval": "Component guidance reviewed.",
+      "summary": "Consider simple content first. Collapsing sections can help some tasks but can also conceal information people need; test the choice with users.",
+      "applies_to": [
+        "browser",
+        "shared-core"
+      ],
+      "limits": "Public-service component guidance is contextual; do not apply its visual styling universally.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "carbon-tabs",
+      "title": "Tabs usage guidelines",
+      "publisher": "IBM Carbon Design System",
+      "url": "https://www.carbondesignsystem.com/building-blocks/core/components/tabs/guidelines",
+      "section": "Usage and when not to use",
+      "kind": "guidance",
+      "version": "Living component guidance",
+      "checked_on": "2026-10-10",
+      "retrieval": "Tabs guidance reviewed.",
+      "summary": "Tabs organize related sections within a context. Content that must be compared across sections is a poor fit for mutually hidden panels.",
+      "applies_to": [
+        "browser",
+        "shared-core"
+      ],
+      "limits": "Choose patterns for the task rather than requiring tabs across products.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "govuk-usability",
+      "title": "Using moderated usability testing",
+      "publisher": "GOV.UK Service Manual",
+      "url": "https://www.gov.uk/service-manual/user-research/using-moderated-usability-testing",
+      "section": "Planning tasks and running sessions",
+      "kind": "guidance",
+      "version": "Living service guidance",
+      "checked_on": "2026-10-10",
+      "retrieval": "Article content reviewed.",
+      "summary": "Use realistic task goals and observe likely users. Avoid hints that teach the navigation during a test; note difficulties and outcomes.",
+      "applies_to": [
+        "shared-core",
+        "evaluation"
+      ],
+      "limits": "Agent walkthroughs and coached owner demos are not equivalent to independent participant task evidence.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "vercel-design-process",
+      "title": "Teaching agents product design at Vercel",
+      "publisher": "Vercel",
+      "url": "https://vercel.com/blog/teaching-agents-product-design-at-vercel",
+      "section": "Skills, linters, review, and recorded decisions",
+      "kind": "guidance",
+      "version": "Published 2026-06-25",
+      "checked_on": "2026-10-10",
+      "retrieval": "Article content reviewed.",
+      "summary": "Describes combining task-specific guidance, mechanical checks, review, and persistent product decisions. Useful as a workflow precedent for this framework.",
+      "applies_to": [
+        "skill-architecture"
+      ],
+      "limits": "A vendor's reported process is not independent evidence that this proposed package works.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "vercel-guidelines",
+      "title": "Web Interface Guidelines",
+      "publisher": "Vercel",
+      "url": "https://vercel.com/design/guidelines",
+      "section": "Interaction and accessible web behavior",
+      "kind": "guidance",
+      "version": "Living guidelines",
+      "checked_on": "2026-10-10",
+      "retrieval": "Guidelines reviewed.",
+      "summary": "Concrete web interaction guidance can inform task-specific reviews of focus, keyboard behavior, controls, and feedback.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Advisory guidance; apply only relevant rules and preserve product identity.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "apple-accessibility",
+      "title": "Human Interface Guidelines: Accessibility",
+      "publisher": "Apple",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/accessibility",
+      "section": "Accessibility, vision, mobility, cognition and motion",
+      "kind": "guidance",
+      "version": "Living HIG; page change history includes 2025-06-09",
+      "checked_on": "2026-10-10",
+      "retrieval": "Official DocC JSON body reviewed at https://developer.apple.com/tutorials/data/design/human-interface-guidelines/accessibility.json; HIG landing-page HTML was script-only.",
+      "summary": "Support system accessibility settings, readable text, multiple ways to perceive information, familiar interactions and reduced motion. Evaluate native accessibility in the target environment.",
+      "applies_to": [
+        "apple-native"
+      ],
+      "limits": "This review covers Accessibility, not the entire HIG. Platform-specific navigation and component guidance remain to be selected during adapter implementation.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "apple-motion",
+      "title": "EnvironmentValues.accessibilityReduceMotion",
+      "publisher": "Apple",
+      "url": "https://developer.apple.com/documentation/swiftui/environmentvalues/accessibilityreducemotion",
+      "section": "Property and discussion",
+      "kind": "tool-documentation",
+      "version": "SwiftUI symbol; verify target SDK at implementation",
+      "checked_on": "2026-10-10",
+      "retrieval": "Official Markdown body reviewed at https://developer.apple.com/documentation/swiftui/environmentvalues/accessibilityreducemotion.md.",
+      "summary": "SwiftUI exposes the system Reduce Motion preference through an environment value. Use it to adapt motion, especially large spatial animations.",
+      "applies_to": [
+        "apple-native",
+        "swiftui"
+      ],
+      "limits": "API evidence only; no application was built or tested.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "gsap-media",
+      "title": "gsap.matchMedia()",
+      "publisher": "GSAP",
+      "url": "https://gsap.com/docs/v3/GSAP/gsap.matchMedia()/",
+      "section": "Conditions, responsive behavior and cleanup",
+      "kind": "tool-documentation",
+      "version": "GSAP v3 docs; API added 3.11.0; installed 3.15.0 source inspected",
+      "checked_on": "2026-10-10",
+      "retrieval": "Conditions, interactivity and cleanup sections re-reviewed for Phase 3A; installed src/gsap-core.js MatchMedia and version inspected.",
+      "summary": "matchMedia reruns matching conditions and reverts scoped animations on changes. Record delayed handler animations in the context and explicitly remove custom event listeners during cleanup.",
+      "applies_to": [
+        "browser",
+        "gsap"
+      ],
+      "limits": "GSAP is optional; this API does not itself guarantee accessible or performant animation.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "gsap-skills",
+      "title": "Official AI skills for GSAP",
+      "publisher": "GreenSock / GSAP",
+      "url": "https://github.com/greensock/gsap-skills",
+      "section": "README and repository overview",
+      "kind": "tool-documentation",
+      "version": "Repository overview; commit not pinned",
+      "checked_on": "2026-10-10",
+      "retrieval": "Repository overview reviewed; skill bodies not audited or installed.",
+      "summary": "An existing official skill collection is a candidate dependency for GSAP-specific implementation guidance.",
+      "applies_to": [
+        "gsap",
+        "optional-dependency"
+      ],
+      "limits": "Review chosen skill bodies, commit and reuse terms before adoption. Repository recommendations do not override the user's framework choice.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "wails-intro",
+      "title": "Wails Introduction",
+      "publisher": "Wails",
+      "url": "https://wails.io/docs/introduction/",
+      "section": "Frontend, native elements and development",
+      "kind": "tool-documentation",
+      "version": "Documentation displayed v2.15.0; v3 beta linked",
+      "checked_on": "2026-10-10",
+      "retrieval": "Introduction reviewed.",
+      "summary": "Wails combines a Go application with web frontend technologies and native desktop facilities. Web-content proof alone does not cover the native shell.",
+      "applies_to": [
+        "wails"
+      ],
+      "limits": "Select the installed major version before using API guidance; no Wails runtime tested.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "fyne-start",
+      "title": "Fyne Getting Started",
+      "publisher": "Fyne",
+      "url": "https://docs.fyne.io/started/",
+      "section": "Getting started and toolkit documentation index",
+      "kind": "tool-documentation",
+      "version": "Living documentation; version not pinned",
+      "checked_on": "2026-10-10",
+      "retrieval": "Getting-started page and linked capability categories reviewed; individual testing APIs not audited.",
+      "summary": "Fyne provides a Go GUI toolkit with widgets, layouts, canvas and platform packaging guidance. Toolkit-specific references are needed for implementation and testing.",
+      "applies_to": [
+        "fyne"
+      ],
+      "limits": "No assumption of DOM semantics, browser automation coverage, or full platform accessibility; verify the actual toolkit version.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "bubbletea",
+      "title": "Bubble Tea",
+      "publisher": "Charm",
+      "url": "https://github.com/charmbracelet/bubbletea",
+      "section": "README introduction and programming model",
+      "kind": "tool-documentation",
+      "version": "Repository README; release not pinned",
+      "checked_on": "2026-10-10",
+      "retrieval": "README reviewed.",
+      "summary": "Bubble Tea is a Go terminal UI framework. Terminal rendering and input require a different verification approach from browser or native widget interfaces.",
+      "applies_to": [
+        "terminal",
+        "bubbletea"
+      ],
+      "limits": "Runtime, terminal and framework versions must be pinned for tests; accessibility support remains to be evaluated.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "playwright-visual",
+      "title": "Visual comparisons",
+      "publisher": "Microsoft / Playwright",
+      "url": "https://playwright.dev/docs/test-snapshots",
+      "section": "Screenshot comparisons and snapshot environment",
+      "kind": "tool-documentation",
+      "version": "Living documentation; runtime not pinned",
+      "checked_on": "2026-10-10",
+      "retrieval": "Documentation reviewed.",
+      "summary": "Screenshot assertions compare rendered output with baselines. Stable operating system, browser, fonts and rendering environment matter to repeatability.",
+      "applies_to": [
+        "browser",
+        "evaluation"
+      ],
+      "limits": "A matching screenshot proves similarity, not usability or correctness of the accepted baseline.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "storybook-access",
+      "title": "Accessibility tests",
+      "publisher": "Storybook",
+      "url": "https://storybook.js.org/docs/writing-tests/accessibility-testing",
+      "section": "Automated accessibility testing",
+      "kind": "tool-documentation",
+      "version": "Living documentation; runtime not pinned",
+      "checked_on": "2026-10-10",
+      "retrieval": "Documentation reviewed.",
+      "summary": "Storybook can run automated accessibility checks on component states. This is an optional integration when the product already uses suitable component tooling.",
+      "applies_to": [
+        "browser",
+        "evaluation"
+      ],
+      "limits": "Automated component checks are incomplete evidence for full journeys and cannot establish complete accessibility conformance.",
+      "capture": "Local paraphrase and canonical link only. No upstream manual or skill body copied. Full-copy rights not assessed; verify license and attribution before vendoring."
+    },
+    {
+      "id": "gsap-context",
+      "title": "gsap.context()",
+      "publisher": "GSAP",
+      "url": "https://gsap.com/docs/v3/GSAP/gsap.context()/",
+      "section": "Recording, scope and cleanup",
+      "kind": "tool-documentation",
+      "version": "GSAP v3; used APIs checked against installed 3.15.0",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named official page sections reviewed for Phase 3A.",
+      "summary": "Contexts collect animations for reversion; callbacks that execute later need context recording.",
+      "applies_to": [
+        "gsap"
+      ],
+      "limits": "Scoped guidance, not full conformance or cross-platform runtime proof.",
+      "capture": "Local paraphrase and canonical link only; no upstream manual copied."
+    },
+    {
+      "id": "playwright-access",
+      "title": "Accessibility testing",
+      "publisher": "Microsoft / Playwright",
+      "url": "https://playwright.dev/docs/accessibility-testing",
+      "section": "axe integration and manual testing",
+      "kind": "tool-documentation",
+      "version": "Living docs; local Playwright 1.64.0 and axe integration 4.13.0",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named official page sections reviewed for Phase 3A.",
+      "summary": "Automated axe scans detect some accessibility issues; manual and inclusive user testing are still needed.",
+      "applies_to": [
+        "browser"
+      ],
+      "limits": "Scoped guidance, not full conformance or cross-platform runtime proof.",
+      "capture": "Local paraphrase and canonical link only; no upstream manual copied."
+    },
+    {
+      "id": "wcag-resize",
+      "title": "Understanding SC 1.4.4 Resize Text",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html",
+      "section": "200 percent and content/functionality",
+      "kind": "guidance",
+      "version": "WCAG 2.2 informative Understanding",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named official page sections reviewed for Phase 3A.",
+      "summary": "Check text enlargement to 200 percent without losing content or functionality, subject to criterion exceptions.",
+      "applies_to": [
+        "browser"
+      ],
+      "limits": "Scoped guidance, not full conformance or cross-platform runtime proof.",
+      "capture": "Local paraphrase and canonical link only; no upstream manual copied."
+    },
+    {
+      "id": "wcag-reflow",
+      "title": "Understanding SC 1.4.10: Reflow",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
+      "section": "Success Criterion; Intent; Reflowing websites and web applications; Content that can benefit from two-dimensional layout",
+      "kind": "guidance",
+      "version": "Living guidance retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named sections inspected via web retrieval on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "Explains AA SC 1.4.10: preserve information and functionality at 320 CSS px width for vertically scrolling content (256 CSS px height for horizontally scrolling content). Necessary two-dimensional content, including data tables, has an exception; individual cells still reflow.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Informative explanation; the normative requirement is in WCAG 2.2. This is not a scrolling ban. A table exception does not exempt surrounding prose or justify unusable cells. 200% zoom is separate from the 320 CSS px check; neither is universal native proof.",
+      "capture": "Concise local paraphrase and canonical URL only; no full upstream copy."
+    },
+    {
+      "id": "carbon-grid",
+      "title": "2x Grid",
+      "publisher": "IBM Carbon Design System",
+      "url": "https://www.carbondesignsystem.com/building-blocks/foundations/2x-grid/overview",
+      "section": "2x Grid fundamentals: Margins, Padding, Breakpoints; Grid behaviors; Grid influencers: Screen regions, Panel behavior",
+      "kind": "guidance",
+      "version": "Living guidance retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named sections inspected via web retrieval on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "Use consistent alignment and margins within breakpoints. Choose fixed, fluid or hybrid grids for the task. Navigation panels influence available content space and grid behavior.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "IBM design-system conventions, including its sizes and units, are contextual rather than accessibility requirements or native defaults.",
+      "capture": "Concise local paraphrase and canonical URL only; no full upstream copy."
+    },
+    {
+      "id": "govuk-layout",
+      "title": "Layout",
+      "publisher": "GOV.UK Design System",
+      "url": "https://design-system.service.gov.uk/styles/layout/",
+      "section": "Screen size; Common layouts; Setting up page wrappers; Using the grid system",
+      "kind": "guidance",
+      "version": "Living guidance retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named sections inspected via web retrieval on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "Start with narrow single-column content; limit reading lines through content columns. The default 1020px container can be widened for content needs. Shared wrappers align related content.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "GOV.UK recommends usually at most 75 characters per line and its own column conventions; these are not universal application widths or WCAG requirements.",
+      "capture": "Concise local paraphrase and canonical URL only; no full upstream copy."
+    },
+    {
+      "id": "wcag-visual-presentation",
+      "title": "Understanding SC 1.4.8: Visual Presentation",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/visual-presentation.html",
+      "section": "Success Criterion; Intent; Sufficient Techniques (second and fifth requirements)",
+      "kind": "guidance",
+      "version": "Living guidance retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named sections inspected via web retrieval on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "Explains AAA SC 1.4.8: a mechanism is available for text presentation, including a width of at most 80 characters or glyphs (40 for CJK), and resizing up to 200% without horizontal scrolling to read a line in a full-screen window. Browser mechanisms can qualify.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Informative explanation of a normative AAA criterion, not an AA default or a whole-application width cap. Other presentation provisions also apply when AAA is adopted. CSS ch is not an exact count of characters.",
+      "capture": "Concise local paraphrase and canonical URL only; no full upstream copy."
+    },
+    {
+      "id": "ons-chart-choice",
+      "title": "Choosing a chart type",
+      "publisher": "Office for National Statistics",
+      "url": "https://service-manual.ons.gov.uk/data-visualisation/chart-types/choosing-a-chart-type",
+      "section": "Overview; Common relationships; Consistent baselines; Stock or flow data",
+      "kind": "guidance",
+      "version": "Living documentation retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages inspected via primary web pages on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "Choose the representation from the data relationship and distinguish point-in-time stocks from interval flows.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "ONS visual/editorial conventions are contextual; no universal chart count or style adopted.",
+      "capture": "Original concise summary and direct link only; no third-party manual, poster, branding or code bundled."
+    },
+    {
+      "id": "ons-bars",
+      "title": "Bar chart",
+      "publisher": "Office for National Statistics",
+      "url": "https://service-manual.ons.gov.uk/data-visualisation/chart-types/bar-charts",
+      "section": "Axis; Category order; Showing deviation",
+      "kind": "guidance",
+      "version": "Living documentation retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages inspected via primary web pages on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "Bar length comparisons start at zero. A dot plot can support a restricted domain. Order categories logically for the comparison.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Does not require bars for all category tasks; ONS styling is not adopted.",
+      "capture": "Original concise summary and direct link only; no third-party manual, poster, branding or code bundled."
+    },
+    {
+      "id": "ons-lines",
+      "title": "Line chart",
+      "publisher": "Office for National Statistics",
+      "url": "https://service-manual.ons.gov.uk/data-visualisation/chart-types/line-chart",
+      "section": "Irregular and missing data; Provide context; Line charts with a stepped line",
+      "kind": "guidance",
+      "version": "Living documentation retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages inspected via primary web pages on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "Show irregular observations explicitly and preserve gaps for missing observations. Steps suit values held constant between changes.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Chart-count preferences and ONS marker styling are not universal requirements.",
+      "capture": "Original concise summary and direct link only; no third-party manual, poster, branding or code bundled."
+    },
+    {
+      "id": "ons-composition",
+      "title": "Pie and doughnut charts",
+      "publisher": "Office for National Statistics",
+      "url": "https://service-manual.ons.gov.uk/data-visualisation/chart-types/pie-and-doughnut-charts",
+      "section": "When to use a pie chart; Comparing multiple distributions",
+      "kind": "guidance",
+      "version": "Living documentation retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages inspected via primary web pages on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "Composition needs a complete, non-overlapping whole. Bars aid comparison of similar sizes; pie segments suit a few clearly different parts.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "No fixed category limit adopted; ONS branding is excluded.",
+      "capture": "Original concise summary and direct link only; no third-party manual, poster, branding or code bundled."
+    },
+    {
+      "id": "ons-uncertainty",
+      "title": "Showing uncertainty in charts",
+      "publisher": "Office for National Statistics",
+      "url": "https://service-manual.ons.gov.uk/data-visualisation/guidance/showing-uncertainty-in-charts",
+      "section": "When to show uncertainty; How to show uncertainty",
+      "kind": "guidance",
+      "version": "Living documentation retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages inspected via primary web pages on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "Retain uncertainty when it changes interpretation of a comparison or trend, with an explanation of the displayed range.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "No blanket prohibition on error bars or mandatory wording adopted; define the actual uncertainty method.",
+      "capture": "Original concise summary and direct link only; no third-party manual, poster, branding or code bundled."
+    },
+    {
+      "id": "ft-vocabulary",
+      "title": "Visual Vocabulary",
+      "publisher": "Financial Times",
+      "url": "https://github.com/Financial-Times/chart-doctor/blob/main/visual-vocabulary/README.md?plain=1",
+      "section": "Ranking; Distribution; Change over Time; Part-to-whole; Spatial; Flow",
+      "kind": "guidance",
+      "version": "Living documentation retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages inspected via primary web pages on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "The reader relationship helps select an encoding: ranks, spread, time, composition, spatial patterns or transfers. Individual dots expose observations; dense overlap and stacked interiors complicate comparison.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Vocabulary rather than required catalog. Root Licence at https://github.com/Financial-Times/chart-doctor limits MIT to software and excludes FT content; no poster, artwork or code copied.",
+      "capture": "Original concise summary and direct link only; no third-party manual, poster, branding or code bundled."
+    },
+    {
+      "id": "carbon-data-dashboards",
+      "title": "Dashboards",
+      "publisher": "IBM Carbon Design System",
+      "url": "https://www.carbondesignsystem.com/building-blocks/data-visualization/dashboards",
+      "section": "Presentation dashboard; Establish a strong hierarchy; Use consistent color assignments; Exploration dashboard",
+      "kind": "guidance",
+      "version": "Living documentation retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages inspected via primary web pages on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "Status summaries and exploratory dashboards serve different reader tasks. Prioritize relevant metrics and retain dataset color identity across views.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "No F-pattern, metric count, layout prescription, branding or numerical comprehension claim adopted.",
+      "capture": "Original concise summary and direct link only; no third-party manual, poster, branding or code bundled."
+    },
+    {
+      "id": "wai-complex-data",
+      "title": "Complex Images",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/tutorials/images/complex/",
+      "section": "Overview; Long descriptions; Example 1; Example 2",
+      "kind": "guidance",
+      "version": "Living documentation retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages inspected via primary web pages on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "An accessible equivalent conveys the graphic\u2019s important relationships and trends along with values. Visible structured descriptions help; aria-describedby alone flattens structure.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Tutorial guidance, not full conformance proof. A raw table may omit the graphic\u2019s meaning; no example code copied.",
+      "capture": "Original concise summary and direct link only; no third-party manual, poster, branding or code bundled."
+    },
+    {
+      "id": "wai-data-tables",
+      "title": "Tables Tutorial",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/tutorials/tables/",
+      "section": "Overview; table header relationships and Caption & Summary",
+      "kind": "guidance",
+      "version": "Living documentation retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages inspected via primary web pages on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "Native table headers and data cells express relationships. Scope or explicit associations support more complex headers; captions identify the table topic.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Overview and linked-topic descriptions inspected; not an audit of every linked tutorial or a screen-reader test.",
+      "capture": "Original concise summary and direct link only; no third-party manual, poster, branding or code bundled."
+    },
+    {
+      "id": "wcag-pause-data",
+      "title": "Understanding SC 2.2.2: Pause, Stop, Hide",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html",
+      "section": "Success Criterion; Intent",
+      "kind": "guidance",
+      "version": "Living documentation retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages inspected via primary web pages on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "Level A distinguishes automatic motion lasting over five seconds from automatically updating information, whose clause has no five-second exception. Both depend on parallel content and essentiality conditions.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Informative explanation; normative WCAG remains authoritative. Reduced motion alone does not supply all applicable update controls.",
+      "capture": "Original concise summary and direct link only; no third-party manual, poster, branding or code bundled."
+    },
+    {
+      "id": "wcag-interaction-motion",
+      "title": "Understanding SC 2.3.3: Animation from Interactions",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html",
+      "section": "Success Criterion; Intent",
+      "kind": "guidance",
+      "version": "Living documentation retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages inspected via primary web pages on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "Level AAA requires interaction-triggered motion to be disableable unless essential. Reduced-motion support can also be adopted as broader product policy.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Not an AA criterion or full conformance assessment.",
+      "capture": "Original concise summary and direct link only; no third-party manual, poster, branding or code bundled."
+    },
+    {
+      "id": "web-animate",
+      "title": "Element: animate() method",
+      "publisher": "MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element/animate",
+      "section": "Description; Syntax; Return value",
+      "kind": "tool-documentation",
+      "version": "Living documentation retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages inspected via primary web pages on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "Element.animate creates and plays an animation and returns its Animation control object.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Browser API documentation; verify actual browser support for chosen properties. No source example copied.",
+      "capture": "Original concise summary and direct link only; no third-party manual, poster, branding or code bundled."
+    },
+    {
+      "id": "web-animation-cancel",
+      "title": "Animation: cancel() method",
+      "publisher": "MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Animation/cancel",
+      "section": "Description; Exceptions",
+      "kind": "tool-documentation",
+      "version": "Living documentation retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages inspected via primary web pages on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "Cancel removes animation effects and aborts playback. A pending finished promise rejects with AbortError when playback is cancelled.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Application underlying styles must supply the committed state; cancellation is not data rollback.",
+      "capture": "Original concise summary and direct link only; no third-party manual, poster, branding or code bundled."
+    },
+    {
+      "id": "web-media-change",
+      "title": "MediaQueryList: change event",
+      "publisher": "MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList/change_event",
+      "section": "Description; Syntax",
+      "kind": "tool-documentation",
+      "version": "Living documentation retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages inspected via primary web pages on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "A MediaQueryList emits change when its query match state changes, allowing live preference handling.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Listener lifecycle belongs to the application. This retrieval is not cross-browser runtime proof.",
+      "capture": "Original concise summary and direct link only; no third-party manual, poster, branding or code bundled."
+    },
+    {
+      "id": "chartjs-updates",
+      "title": "Updating Charts",
+      "publisher": "Chart.js",
+      "url": "https://www.chartjs.org/docs/latest/developers/updates.html",
+      "section": "Updating Options; Updating Scales; Preventing Animations",
+      "kind": "tool-documentation",
+      "version": "Living documentation retrieved 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages inspected via primary web pages on 2026-10-10, America/New_York; summary-only capture.",
+      "summary": "The chart owns its update transitions; update with mode none suppresses animation. Scale references may change when IDs or scale types change.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Optional renderer example only. No Chart.js dependency or integration was exercised; inspect the target installed version.",
+      "capture": "Original concise summary and direct link only; no third-party manual, poster, branding or code bundled."
+    },
+    {
+      "id": "wai-form-labels",
+      "title": "Labeling Controls",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/tutorials/forms/labels/",
+      "section": "Associating labels explicitly; labeling buttons; form controls for mobile",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Use associated labels that describe each control; match input controls to the kind of information.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Informative web guidance; does not mandate a visual layout or prove a mobile keyboard was tested.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "wai-form-groups",
+      "title": "Grouping Controls",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/tutorials/forms/grouping/",
+      "section": "Associating related controls with fieldset; related fields",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Expose meaningful groups visually and programmatically, with a short shared legend and understandable individual labels.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Informative; fieldset is useful for a shared question, not a demand to wrap every unrelated field.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "wai-form-validation",
+      "title": "Validating Input",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/tutorials/forms/validation/",
+      "section": "Required/common input; client-side validation; user confirmation and undo",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Native HTML offers common input constraints. Custom validation needs accessible feedback; client checks do not replace service validation.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Informative; native and custom approaches require checks in the actual product.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "wai-form-notifications",
+      "title": "User Notification",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/tutorials/forms/notifications/",
+      "section": "Overall feedback; listing errors; inline feedback; timing",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Explain submission outcomes and corrections; connect errors to controls and choose focus or feedback appropriate to the form.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Informative; examples are techniques, not a requirement to combine all notification mechanisms.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "govuk-form-validation",
+      "title": "Recover from validation errors",
+      "publisher": "GOV.UK Design System",
+      "url": "https://design-system.service.gov.uk/patterns/validation/",
+      "section": "When not to use; preserving answers; when to tell users",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Retain entered information after rejection. Validate at submission by default; distinguish input mistakes from permissions, eligibility and service failure.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "GOV.UK prescribes custom validation and summary behavior in its system. This package preserves native validation when adequate and does not import branding.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "govuk-form-errors",
+      "title": "Error message",
+      "publisher": "GOV.UK Design System",
+      "url": "https://design-system.service.gov.uk/components/error-message/",
+      "section": "Match messages to labels; be clear and concise; associated hint/error example",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Use the field vocabulary to explain the problem and a useful correction; associate the message with the input.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Editorial examples and word preferences are publisher conventions, not universal forbidden-word rules.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "govuk-form-confirmation",
+      "title": "Confirmation pages",
+      "publisher": "GOV.UK Design System",
+      "url": "https://design-system.service.gov.uk/patterns/confirmation-pages/",
+      "section": "How it works; help users who bookmark the page",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Confirm completed transactions with a retrievable reference/result and meaningful next steps when available.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "A transaction confirmation page is not necessary for every inline save; GOV.UK panel style and feedback links are not inherited.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "http-retry-semantics",
+      "title": "HTTP Semantics: Idempotent Methods",
+      "publisher": "IETF",
+      "url": "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2",
+      "section": "Section 9.2.2",
+      "kind": "standard",
+      "version": "RFC 9110, June 2022",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Automatic retry of a non-idempotent operation requires knowledge that its semantics are safe to repeat or that the prior attempt was not applied.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "HTTP semantics do not establish a particular service deduplication contract, retention window or business-effect guarantee.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "wcag-form-status",
+      "title": "Understanding SC 4.1.3 Status Messages",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
+      "section": "Success criterion; intent; changes of context",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Status updates without a focus change need programmatically identifiable semantics so assistive technology can present them.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Informative explanation of Level AA criterion; DOM inspection cannot verify actual spoken announcements.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "wcag-form-prevention",
+      "title": "Understanding SC 3.3.4 Error Prevention",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-legal-financial-data.html",
+      "section": "Success criterion; intent",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "For scoped legal, financial, stored-data and test submissions, safeguards include reversibility, checking with correction, or review/confirmation before finalizing.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Level AA scoped criterion, not an all-form dialog requirement. The normative WCAG text governs adopted conformance.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "web-beforeunload",
+      "title": "Window: beforeunload event",
+      "publisher": "MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event",
+      "section": "Usage notes; sticky activation; mobile lifecycle reliability",
+      "kind": "tool-documentation",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "A dirty-page leave warning can supplement recovery; attach it only when needed. It requires prior interaction and may not fire on mobile lifecycle paths.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Browser documentation; neither warning delivery nor draft persistence is guaranteed. No mobile runtime test inferred.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "apg-navigation-tabs",
+      "title": "Tabs Pattern",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/tabs/",
+      "section": "About; keyboard interaction; roles, states and properties",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Related panels show one view at a time; selected state, panel relationships and keyboard behavior distinguish a tabs widget from route links. Automatic activation is suitable only without noticeable latency.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Informative web widget guidance; no requirement to add tabs or hide content needed for comparison.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "apg-navigation-links",
+      "title": "Link Pattern",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/link/",
+      "section": "About; native host-language link note",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Native anchors with href retain destination and context-menu behaviors. A link role alone does not implement those capabilities.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Informative web guidance; native-platform destination controls require their own conventions.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "apg-navigation-disclosure",
+      "title": "Disclosure Pattern",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/",
+      "section": "About; keyboard interaction; expanded state",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "A disclosure toggles supporting content using a button with an exposed expanded state and Enter/Space activation.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Informative pattern; native details/summary can provide equivalent behavior without custom ARIA. Essential task outcomes should remain discoverable.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "wai-navigation-structure",
+      "title": "Menu Structure",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/tutorials/menus/structure/",
+      "section": "Identify/label menus; indicate current item; responsive design",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Navigation landmarks, meaningful region labels and current-item semantics support orientation. Preserve wording, order and destinations across sizes.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Informative tutorial includes techniques from multiple levels; it does not mandate a particular shell or removing every current-page link.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "govuk-navigation-service",
+      "title": "Navigate a service",
+      "publisher": "GOV.UK Design System",
+      "url": "https://design-system.service.gov.uk/patterns/navigate-a-service/",
+      "section": "When to use/not use; choosing links; service-level search",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Recurring multi-task services may benefit from top-level links. Keep navigation focused on useful destinations and make service search scope clear.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "GOV.UK header, colors, placeholder example, external-window preference and linear-journey convention are not universal rules; use a persistent search label.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "govuk-navigation-tabs",
+      "title": "Tabs",
+      "publisher": "GOV.UK Design System",
+      "url": "https://design-system.service.gov.uk/components/tabs/",
+      "section": "When to use/not use; tabs, accordion and details",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Tabs can support frequent switching among related sections, but hide content and hinder sequential reading or cross-panel comparison. Consider headings or separate pages.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Publisher pattern choice and styling are contextual. Route-based views may use destination links with a tab-like appearance; this does not make them ARIA tabs.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "govuk-navigation-pagination",
+      "title": "Pagination",
+      "publisher": "GOV.UK Design System",
+      "url": "https://design-system.service.gov.uk/components/pagination/",
+      "section": "When to use/not use; how it works; pages of items",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Paginate when bounded pages improve usability or load cost. Identify pages and provide meaningful adjacent navigation; a nonexistent page needs a predictable recovery.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "First-page redirection and avoiding infinite scroll are GOV.UK conventions; choose task-appropriate recovery and traversal without importing branding.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "scot-navigation-search",
+      "title": "Search results list",
+      "publisher": "Scottish Government Design System",
+      "url": "https://designsystem.gov.scot/patterns/search-results",
+      "section": "Results count; sorting search results; no results message",
+      "kind": "guidance",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Result counts and applied search terms orient users. Sorting should use meaningful attributes available across the set; no-results feedback should help broaden or correct the search.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Site-search research, ten-results page size, tracking and numerical usage claims are publisher-specific and not adopted here.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "web-navigation-history",
+      "title": "Working with the History API",
+      "publisher": "MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API",
+      "section": "pushState; popstate; initial entry and replaceState",
+      "kind": "tool-documentation",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "pushState creates an entry; replaceState updates it. Same-document navigation handles popstate to restore the prior view and may initialize the first entry with state.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Browser session history is not a durable-storage or security guarantee. Examples do not require adopting a single-page architecture.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "web-navigation-scroll",
+      "title": "History: scrollRestoration",
+      "publisher": "MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/History/scrollRestoration",
+      "section": "Value: auto/manual",
+      "kind": "tool-documentation",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "auto permits browser scroll restoration on history navigation; manual turns that automatic restoration off. Coordinate ownership before changing the default.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "A scroll-restoration setting does not establish focus restoration, readiness timing or successful task resumption.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "web-navigation-params",
+      "title": "URLSearchParams",
+      "publisher": "MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams",
+      "section": "Parsing window.location; duplicate parameters; percent encoding",
+      "kind": "tool-documentation",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "URLSearchParams reads and serializes query parameters; get returns the first duplicate while getAll exposes all. Product validation and duplicate policy remain necessary.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "URL parsing does not validate domain values, prevent sensitive-data exposure or authorize a return destination.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "web-navigation-focus",
+      "title": "HTMLElement: focus()",
+      "publisher": "MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus",
+      "section": "Parameters: preventScroll; default focus behavior",
+      "kind": "tool-documentation",
+      "version": "Living documentation; inspected 2026-10-10",
+      "checked_on": "2026-10-10",
+      "retrieval": "Named passages reviewed via primary documentation.",
+      "summary": "Focus moves keyboard input to a focusable element and normally scrolls it into view. preventScroll can separate position restoration from focus when coordinated deliberately.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Browser documentation does not prove screen-reader speech or consistent focus-visible behavior across engines.",
+      "capture": "Original summary and direct link only; no upstream code, manual or branding bundled."
+    },
+    {
+      "id": "wcag-visual-identification",
+      "title": "Understanding SC 3.2.4: Consistent Identification",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html",
+      "section": "SC, intent, notes on repeated functionality and different actions",
+      "kind": "guidance",
+      "version": "Informative WCAG 2.2 Understanding; page updated 2026-09-06",
+      "checked_on": "2026-10-11",
+      "retrieval": "Named passages reviewed from primary publisher content via web retrieval.",
+      "summary": "Recurring components with the same functionality within a set of pages need consistent identification. Context can justify different labels while preserving recognition. Visually similar controls with different results need not share identification.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "AA criterion concerns functionality and recognition, not identical composition or a universal visual style. This explanation is informative; no full conformance follows.",
+      "capture": "Original summary and direct link only; no upstream manual or code bundled."
+    },
+    {
+      "id": "carbon-visual-tokens",
+      "title": "Color tokens",
+      "publisher": "IBM Carbon Design System",
+      "url": "https://www.carbondesignsystem.com/building-blocks/foundations/color/tokens",
+      "section": "Core tokens: background, hover, active, selected, border, text and focus roles across theme columns",
+      "kind": "guidance",
+      "version": "Living guidance; page updated 2026-09-25",
+      "checked_on": "2026-10-11",
+      "retrieval": "Named passages reviewed from primary publisher content via web retrieval.",
+      "summary": "Carbon names colors by UI roles and provides values for supported themes and interaction states. Role-based mappings can keep component use consistent while actual colors change with context.",
+      "applies_to": [
+        "shared-core",
+        "browser"
+      ],
+      "limits": "Carbon names, palettes, theme count and values are its conventions. This example supports reuse of an existing product mapping; it requires no Carbon adoption or new theme.",
+      "capture": "Original summary and direct link only; no upstream manual or code bundled."
+    },
+    {
+      "id": "govuk-visual-extension",
+      "title": "Extending and modifying components in production",
+      "publisher": "GOV.UK Design System",
+      "url": "https://design-system.service.gov.uk/get-started/extending-and-modifying-components/",
+      "section": "Maintenance, existing override classes, small/large modifications and accessibility checks",
+      "kind": "guidance",
+      "version": "Living guidance; no release pin",
+      "checked_on": "2026-10-11",
+      "retrieval": "Named passages reviewed from primary publisher content via web retrieval.",
+      "summary": "Inspect available extension mechanisms before adding styles. Component changes can affect maintenance, updates and accessibility; narrowly scoped modifications and review of affected behavior reduce unintended effects.",
+      "applies_to": [
+        "shared-core",
+        "browser"
+      ],
+      "limits": "GOV.UK override, BEM, prefix and fork conventions illustrate its architecture; they are not universal requirements. No branding, component code or scale is imported.",
+      "capture": "Original summary and direct link only; no upstream manual or code bundled."
+    }
+  ]
+}

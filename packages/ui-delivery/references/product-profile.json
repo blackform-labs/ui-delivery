@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "product_id": "example-product",
+  "audience": null,
+  "primary_tasks": [],
+  "surfaces": [],
+  "identity_references": [],
+  "constraints": {
+    "data_sensitivity": null,
+    "permitted_test_environments": [],
+    "layout_policy": {
+      "application": "Describe available space after navigation, responsive margins and shared alignment. Select units for the actual renderer.",
+      "reading": "Describe independent text measure for language, typography and task.",
+      "comparison": "Describe useful comparison width and narrow behavior, including any necessary local scrolling.",
+      "exceptions": []
+    }
+  },
+  "existing_components": [],
+  "accepted_patterns": [],
+  "acceptance_owner": null,
+  "provenance": {},
+  "unknown_reasons": {
+    "audience": "Template: identify the actual audience.",
+    "constraints.data_sensitivity": "Template: inspect product constraints.",
+    "acceptance_owner": "Template: no owner identified."
+  }
+}

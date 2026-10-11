@@ -1,0 +1,13 @@
+# Evidence records
+
+Copy [evidence-template.json](evidence-template.json) for material structured proof; for a tiny edit a compact receipt is enough. Required record fields follow schema 1. Unknown required values use `null` and a nonempty entry in `unknown_reasons` keyed by their dotted field path. A missing key is an error. Templates are deliberately incomplete and must be filled to represent observed work.
+
+Checks contain `id`, `rule_id`, `method` (automated, design-review, human-task), `status` (pass, fail, not-run, not-applicable), `reason`, `artifact`, and `observation`. A pass requires an existing artifact or observed result; unavailable and inapplicable checks need specific reasons. Artifact links resolve under the supplied artifact root. Automation checks record integrity; it cannot authenticate a claim or score visual quality.
+
+`design_review` has `status` (pending or reviewed), `findings` (each with affected `task`, `severity`, and `finding`), and `observation`. `human_acceptance` has `status` (pending, accepted, rejected), `actor`, `date`, and `observation`. Pending acceptance has no actor/date; a real decision needs both plus its observation. Human-task passes require a `human_context` object containing task, participant_context, environment, result, and artifact_handling. Agent simulations belong in design-review with their simulation limit stated. Omit credentials and minimize personal information.
+
+`adapter_revisions` maps candidate IDs to integer revisions. Null `profile_revision` must explain why (for example, a compact task note instead of a persistent profile). `package_revision` and `source_registry_hash` must match the inspected package; the hash is SHA-256 of the shipped source registry bytes. Checks refer to the canonical rule IDs. The validator does not assert that every applicable rule has been selected; that remains scope review.
+
+Optional `exceptions` contain rule_id, scope, rationale, owner_decision, remaining_risk, and review_trigger_or_date. They retain the original result; exceptions cannot authorize falsified conformance.
+
+For product context use [product-profile.json](product-profile.json). Surfaces name platform, renderer, framework, framework_version, input_methods, target_sizes, and accessibility_settings. Accepted patterns include scope, decision, rationale, evidence, owner, and status (proposed, accepted, rejected); accepted entries need a known owner and supporting evidence. Record inferred context in `provenance`. Local identity/evidence references resolve under the artifact root. Existing code alone does not mean a pattern was accepted.
