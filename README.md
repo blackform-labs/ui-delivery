@@ -6,7 +6,32 @@ Skill identifier: `ui-delivery`. Package version: **0.9.2**. This repository is 
 
 ## Start a first project
 
-You need a coding agent that can read local skill instructions and edit/run a local project. The browser onboarding tool requires **Node.js 22 or newer**. Python 3 is used for package validation and building the ZIP. These tools use standard libraries; there is no npm install step for the skill. Generated apps may have their own dependencies.
+You need a coding agent that can read local skill instructions and edit/run a local project. The browser onboarding tool requires **Node.js 22 or newer**. Python 3 is used for package validation and building the ZIP. The skill tools use standard libraries. The optional npm installer below requires Node.js 22.20.0 or newer. Generated apps may have their own dependencies.
+
+### Install for your Codex account
+
+Use your own GitHub account with access to this private repository. If needed, run `gh auth login` first. Install with the [skills CLI](https://github.com/vercel-labs/skills):
+
+```sh
+npx --yes skills@1.7.2 add https://github.com/blackform-labs/ui-delivery/tree/main/packages/ui-delivery --skill ui-delivery --agent codex --global --copy
+```
+
+Review the installer prompts. `--global` means your user account, across projects; it does not install for other users of your computer. The CLI installs Codex skills under `~/.agents/skills`. The version above pins the installer; the skill comes from this repository's current `main` branch. Repository access is still required. No separate Blackform npm package is needed.
+
+On your next Codex turn, invoke `$ui-delivery`. If it does not appear, restart Codex. In a separate app project, try:
+
+```text
+Use $ui-delivery to build a simple website to track my farts during the day.
+Treat this as a new project. Start the real local onboarder, give me its verified
+URL, and wait for my submissions before dependent implementation. Keep the app
+local and return a working preview for review.
+```
+
+The installation copies the skill; it does not start onboarding or a background agent. A new-app request invokes that workflow. Keep project/session files in your app directory. Installation does not update automatically: review newer versions before reinstalling, and back up any edits made to the installed copy. To uninstall, ask your agent to remove only the installed `ui-delivery` folder; keep app and session data if you want to resume later.
+
+For a project-only install, run the command from that project and omit `--global`. Other agents have their own `--agent` values; only Codex installation has been checked here.
+
+### Use by path without installing
 
 Clone this repository using your own GitHub account with access:
 
@@ -17,7 +42,7 @@ python3 packages/ui-delivery/scripts/validate.py
 node packages/ui-delivery/scripts/ui-delivery.mjs help
 ```
 
-For the first trial, use the skill directly by path. No global installation is required. Create a separate empty app directory and give your coding agent this prompt, replacing both placeholders with actual paths:
+Alternatively, use the skill directly by path without account-wide installation. Create a separate empty app directory and give your coding agent this prompt, replacing both placeholders with actual paths:
 
 ```text
 Read and use the ui-delivery skill at <checkout>/packages/ui-delivery/SKILL.md.
@@ -70,4 +95,4 @@ The ZIP contains only `ui-delivery/`. All 26 package files are unchanged from th
 
 No open-source license has been selected or included in this peer-test package. A private testing repository is not an announcement of an open-source release. Source attribution and retrieval limits are preserved in [the source registry](packages/ui-delivery/references/sources.json).
 
-No global installation is performed by these steps. To stop testing, stop your local servers with the reported commands. Retain your app and session data if you want to resume later; removing this checkout does not remove a separately created app.
+The account installation above persists until removed. To stop testing, stop your local servers with the reported commands. Retain your app and session data if you want to resume later; removing this checkout does not remove a separately created app.
