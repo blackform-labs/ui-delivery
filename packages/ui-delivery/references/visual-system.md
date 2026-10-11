@@ -15,7 +15,7 @@ Distinguish the evidence:
 | Isolated deviation | Check whether it is intentional, stale or a defect before copying or removing it. |
 | Unknown or conflicting evidence | Name the conflict and its effect on this task. Resolve using applicability, recorded intent, current runtime and existing authorization; ask only when the unresolved choice materially changes the result. |
 
-There is no universal documentation-versus-code authority order. Inspect dates, scope and actual consumers when evidence disagrees. Existing accessibility commitments still apply; documenting an exception cannot turn a failure into a pass. If no established system is found, state that absence and use a proportionate local convention for the authorized change. A small feature does not authorize a comprehensive design system or product redesign.
+There is no universal documentation-versus-code authority order. Inspect dates, scope and actual consumers when evidence disagrees. Existing accessibility commitments still apply; documenting an exception cannot turn a failure into a pass. If no established system is found, state that absence. For a new app direction use [visual-direction.md](visual-direction.md); for a local change use a proportionate local convention. A small feature does not authorize a comprehensive design system or product redesign.
 
 ## Choose the reuse boundary
 

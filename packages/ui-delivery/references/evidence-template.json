@@ -2,7 +2,7 @@
   "schema_version": 1,
   "task_id": "example-task",
   "scope": null,
-  "package_revision": "0.9.2",
+  "package_revision": "0.10.0",
   "source_registry_hash": null,
   "profile_revision": null,
   "adapter_revisions": {},

@@ -2,7 +2,7 @@
 name: ui-delivery
 description: Shape, implement, review, or verify user interfaces using task hierarchy, product identity, platform routing, and scoped evidence. Use for new UI work and improvements to existing screens, including tiny edits. Excludes backend-only work.
 metadata:
-  version: 0.9.2
+  version: 0.10.0
 ---
 
 # UI delivery
@@ -30,6 +30,8 @@ For metrics, tables, charts, data maps or animated data updates, read [data-pres
 For an affected UI, route by observed renderer, framework/version, inputs, and target using [adapters.md](references/adapters.md). Language alone does not select a UI adapter. Read the matching record in [adapters.json](references/adapters.json). For browser content use [browser.md](references/browser.md); when GSAP is actually selected also use [gsap.md](references/gsap.md). Support is limited to recorded runtime evidence; native candidates remain documentation-only.
 
 For material work needing reusable context, adapt [product-profile.json](references/product-profile.json) with provenance; keep unknowns explicit. Preserve accepted patterns within their recorded scope and the product's identity. For width changes or related-screen consistency, read [layout.md](references/layout.md).
+
+When establishing an app interface without an established visual system, read [visual-direction.md](references/visual-direction.md). Translate references and preferences into reviewable choices and reusable visual roles; skip alternatives for a supplied, accepted or explicitly delegated direction.
 
 When extending or correcting an existing interface, or reconciling inconsistent related screens, read [visual-system.md](references/visual-system.md). Discover the product's components, tokens and decision evidence; check other consumers before shared changes. Keep tiny edits local.
 

@@ -12,6 +12,8 @@ Local development receipts report protocol, rendering, portability and independe
 
 The 0.9.2 acceptance-confirmation correction reports 15 focused checks and 25 interaction regressions. Other historical suites have overlapping coverage and should not be summed into a single quality score. Earlier shell checks included actual 200% Chrome zoom; that is not proof for every generated app.
 
+The local 0.10.0 visual-direction receipt reports 98 final app browser checks, actual 200% Chrome zoom, package/contract regressions, and independent guidance/rendered review. That evaluation used synthetic answers; it does not establish human acceptance. Those browser suites were not rerun for this repository synchronization. The separate dating-site screenshots in [the example](EXAMPLE.md) are presentation evidence, not a replay of those tests.
+
 Still unverified: screen-reader speech, physical touch devices, other browser engines, native app runtimes, representative-device performance, and real-service integrations. An earlier review-shell test did not establish complete keyboard-only feedback-target selection. Accessibility automation does not establish complete conformance. These limits should guide peer testing, not be silently marked passed.
 
 Browser submissions require manual continuation in the agent conversation. Review previews are scriptless. The local server binds to loopback and trusts local OS users; it is not a shared hosted application.

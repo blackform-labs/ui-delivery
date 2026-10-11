@@ -9,7 +9,7 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
-VERSION = '0.9.2'
+VERSION = '0.10.0'
 METHODS = {'automated', 'design-review', 'human-task'}
 ID = re.compile(r'^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$')
 

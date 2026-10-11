@@ -1,18 +1,18 @@
 {
-  "package_revision": "0.9.2",
-  "package_hash": "6e0b6a134e8bc6cc16bd80e80403f165e740583888e154db5bb120bd7ea6a827",
+  "package_revision": "0.10.0",
+  "package_hash": "fe3582ae00976f4d79a5ac16d71b3b295801c5bd95bd4892d4637d9521f3785f",
   "hash_method": "SHA-256 of sorted compact JSON mapping relative path to file SHA-256",
-  "archive": "ui-delivery-0.9.2.zip",
-  "archive_sha256": "e2c45594b2f8c896f82ef87b078f05908da5bf21a77aec60ecd5ab8dde0ab19d",
+  "archive": "ui-delivery-0.10.0.zip",
+  "archive_sha256": "7fbbdc795551c592f321c52ffbd6dbf19f8ae709a3009fc881babfd7ad6abe0d",
   "source_registry_hash": "737c190cede276288c47305d1d93f29571aaf5f66f13005a140d5113208033eb",
   "files": {
-    "SKILL.md": "412e76608fe47f6e8ce66ab8f89f25dc084ec80e66cc5c3f4dbea2d84bea0fc3",
+    "SKILL.md": "6f401039997150ac47ac7f5201c91c42096ff80108761bb0c1b54be2a2ff27bc",
     "references/adapters.json": "2f749a48d3e9c597bd7b86679386abb2e5f6488ad5cf3bac9e7c1376b0380bb8",
     "references/adapters.md": "5378c84fbdaab2e58f09683b2e9ec2401b16701cd4baa1cdcff373c62d19303b",
-    "references/authoring.md": "47d83818e279e2413206c0284f9be41c9a06208d0d06a12253323087830d2ad2",
+    "references/authoring.md": "f7f5bfb396374d4742cb97a64ba96c4f8b83d63676f778d5a9b74e66a955efbb",
     "references/browser.md": "5d493f4484b3d12fe70efa8ebf7e2d05c9c511037a1e3edac1476ec7cbd6ef55",
     "references/data-presentation.md": "58fd760563af82160bccbcc29fa89e881ac0fee4f786800a2ab744f6d81abbf3",
-    "references/evidence-template.json": "70cc1c70770a07751ace9abed4866a5d11bf3a6754d29235f4e98eff226b909a",
+    "references/evidence-template.json": "da9364ad63b60c54a9b344ef8acc1df0c83e01df95e91ac3efed40aff33f4d68",
     "references/evidence.md": "d4009310ef396fb88262c75e63fc4fe460dc5ed889ea946fb0101751f96a53ff",
     "references/forms-and-actions.md": "5505c377aeaceb63a4173ce12bdb2df96d5f6a0ef9bda8c52e127566cdc2bbf5",
     "references/gsap.md": "20d5225bf7b53b9059c23b44c17f6e9fc1a7955dc3e80b6cfa35b3fa296c3249",
@@ -23,7 +23,8 @@
     "references/product-profile.json": "bd1244740f5c946d8a99bdc7fc296bdf6f76afe9e0ea3a95cc420567fcad65ad",
     "references/rules.json": "daf61a7ce02a0a4e39ec3d2c367320443fec7e94ede673dc376244d67a4d1bec",
     "references/sources.json": "737c190cede276288c47305d1d93f29571aaf5f66f13005a140d5113208033eb",
-    "references/visual-system.md": "65615799fbc7ec973f47479697649bb107771b9e2b1cfb973a0d2eb70c659300",
+    "references/visual-direction.md": "199974daa4d25e92a74c1a90302fabc607c644387195e9a1a1d07d4d45e960f1",
+    "references/visual-system.md": "ee0201d65d2a61805270e8dccb9b196fcce5d4ceb56180d1528e9bd5bfc484d5",
     "references/workflow.md": "aa1458cffb998347c32534cd6028bc929fa06384deb4518632a02b0ab65f133b",
     "scripts/browser_probe.mjs": "5affc1f000ac116f968779f069f66f15d8e38700605c53efe45460e29d696aff",
     "scripts/interaction.mjs": "52828ce0f2105394d5472772d3880d27470d7146b2e2c539f54e5d1d6a516209",
@@ -31,6 +32,6 @@
     "scripts/review/review.html": "1e2a8c5ced3b9e5d160b32abcd4a116e840ac6b8929ac7587c6321818ada4acb",
     "scripts/review/review.js": "0634e5c7726d3163f419dfd014698e1d0e178cda7ae2327e0583b91a014e316f",
     "scripts/ui-delivery.mjs": "e6b641961b2ed62a4888e58f6c6991bbabc176d4ef2528e30c8541670d5508d0",
-    "scripts/validate.py": "0bb655c9da732e6fb05525f725ee3d8c794be1cd70ae62a6d1641447dc381a43"
+    "scripts/validate.py": "242a69ee02427fb73eaff2d192e0f916e242e3eae294b9baf78cf7ff1d5d55a5"
   }
 }

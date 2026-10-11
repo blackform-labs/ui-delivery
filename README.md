@@ -2,7 +2,15 @@
 
 An experimental skill that helps a coding agent shape, build, review, and verify an app's interface with its user.
 
-Skill identifier: `ui-delivery`. Package version: **0.9.2**. This repository is for invited peer testing. It contains the portable skill and distribution tools; personal project sessions and development-workspace evidence are excluded.
+Skill identifier: `ui-delivery`. Package version: **0.10.0**. This repository is for invited peer testing. It contains the portable skill and distribution tools; personal project sessions and development-workspace evidence are excluded.
+
+## Example: hello, you
+
+A dating-site demo from a separate user trial, with an “Interactive dating demo” scope and a “Warm and playful” direction saved in the onboarder. Profiles are fictional adults, portraits are illustrative, and matches are simulated.
+
+![hello, you dating demo with a lavender hero, interest filters and profile cards](docs/screenshots/hello-you-discover.jpg)
+
+See [the onboarding and review screenshot](docs/EXAMPLE.md) for the saved choices and result. These captures show the local example; they are not a hosted demo or a claim of production readiness.
 
 ## Start a first project
 
@@ -74,7 +82,7 @@ The agent must report the exact project, session, URL, and start/stop/resume com
 
 ## What is covered
 
-- Task hierarchy, product identity, existing components and visual systems.
+- Task hierarchy, product identity, new-app visual direction, existing components and visual systems.
 - Forms, saving, recovery, navigation, and context restoration.
 - Metrics, tables, charts, truthful data states, and optional motion.
 - Product copy, browser accessibility checks, and scoped verification.
@@ -91,7 +99,7 @@ python3 scripts/build.py
 python3 scripts/check_distribution.py
 ```
 
-The ZIP contains only `ui-delivery/`. All 26 package files are unchanged from the local 0.9.2 delivery. Repository documentation and the distribution check are separate additions.
+The ZIP contains only `ui-delivery/`. All 27 package files match the local 0.10.0 delivery. Previous versioned archives are retained; `dist/manifest.json` identifies the current distribution. Repository documentation and the distribution check are separate additions.
 
 No open-source license has been selected or included in this peer-test package. A private testing repository is not an announcement of an open-source release. Source attribution and retrieval limits are preserved in [the source registry](packages/ui-delivery/references/sources.json).
 
