@@ -48,7 +48,7 @@ function question(q,saved){
 function render(){
   $('title').textContent=state.brief.title;$('session').textContent=state.product_id+' / '+state.session_id;
   $('intro').textContent=state.status==='cancelled'?'This session is paused. Resume when you are ready.':state.brief.scope==='material'?'Answer the open questions, then review the result. You can revise saved answers at any time.':'This task is ready for implementation. No interview is needed.';
-  $('continuation').textContent='This page checks for agent updates automatically. Your choices and feedback stay saved. An agent starts work only after continuing your conversation.';
+  $('continuation').textContent='During a live session, submitted answers and feedback reach the connected agent. If the agent is disconnected, return to your conversation to reconnect or use the saved handoff. This page cannot start a closed conversation.';
   showActivity(state);
   $('content').replaceChildren();$('pause').textContent=state.status==='cancelled'?'Resume session':'Pause session';
   const facts=section('Project context'),grid=el('div',undefined,{class:'facts'});facts.append(grid);
@@ -88,6 +88,10 @@ load().catch(e=>notice('Review could not load. Check that the local server is ru
 
 // Live status never silently rebases another user's decisions or discards local drafts.
 function showActivity(snapshot,offline=false){
+  const c=snapshot.connection;
+  const connections={waiting:'Agent connected and waiting.',received:'Agent received this submission.',processing:'Agent processing this submission.',paused:'Session paused. Saved answers remain.',stale:'Agent disconnected; answers remain saved. The connection expired.',idle:'Agent disconnected; answers remain saved. No waiting command is active.',disconnected:'Agent disconnected; answers remain saved. Return to your conversation to connect.'};
+  const connectionText=offline?'Local server disconnected. Saved answers remain; keep this page open to retain drafts.':connections[c?.status??'disconnected'];
+  if($('agent-connection').textContent!==connectionText)$('agent-connection').textContent=connectionText;
   const a=snapshot.activity;
   const title=offline?'Connection lost; saved submissions remain':a?.title??'Checking the agent status';
   const message=offline?'The local server is unavailable. Keep this page open to retain drafts; updates resume when the same server returns.':a?.message??'Restart the local review server to load live status support.';

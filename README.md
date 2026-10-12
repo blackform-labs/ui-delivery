@@ -2,7 +2,7 @@
 
 An experimental skill that helps a coding agent shape, build, review, and verify an app's interface with its user.
 
-Skill identifier: `ui-delivery`. Package version: **0.11.0**. This repository is for invited peer testing. It contains the portable skill and distribution tools; personal project sessions and development-workspace evidence are excluded.
+Skill identifier: `ui-delivery`. Package version: **0.12.1**. This repository is for invited peer testing. It contains the portable skill and distribution tools; personal project sessions and development-workspace evidence are excluded.
 
 ## Example: hello, you
 
@@ -31,8 +31,9 @@ On your next Codex turn, invoke `$ui-delivery`. If it does not appear, restart C
 ```text
 Use $ui-delivery to build a simple website to track my farts during the day.
 Treat this as a new project. Start the real local onboarder, give me its verified
-URL, and wait for my submissions before dependent implementation. Keep the app
-local and return a working preview for review.
+URL, and keep an active listener for my submissions before dependent implementation.
+Consume my answers and feedback through that listener while this conversation stays
+active. Keep the app local and return a working preview for review.
 ```
 
 The installation copies the skill; it does not start onboarding or a background agent. A new-app request invokes that workflow. Keep project/session files in your app directory. Installation does not update automatically: review newer versions before reinstalling, and back up any edits made to the installed copy. To uninstall, ask your agent to remove only the installed `ui-delivery` folder; keep app and session data if you want to resume later.
@@ -59,8 +60,10 @@ Build my app inside <new-empty-app-directory>. Treat this as a new project.
 I want a simple website to track my farts during the day. Make it easy and a little funny.
 
 Use the skill's real local onboarding flow to resolve material questions.
-Give me the verified onboarding URL and wait for my actual submissions before
-dependent implementation. Use a fresh project/session; do not reuse another person's answers.
+Give me the verified onboarding URL and keep an active listener for my actual
+submissions before dependent implementation. Consume answers and feedback while
+this conversation stays active. Use a fresh project/session; do not reuse another
+person's answers.
 Then build a working local app from those answers and return it for review.
 Keep the skill checkout unchanged. Do not deploy or publish the app.
 ```
@@ -71,7 +74,7 @@ You can replace the app idea with your own. The agent should ask only questions 
 
 Open a separate project folder and start a conversation with your coding agent using the prompt above. Describe what you want to build, who will use it, and anything you already know about the design. You can include screenshots, reference sites, or existing brand assets. You do not need to know the framework or choose a component library first.
 
-For a new app, the agent starts a local onboarding page and gives you its URL. That page belongs to your project and session. Keep the agent conversation open alongside it: you will move between the browser and chat as the work progresses.
+For a new app, the agent starts a local onboarding page and gives you its URL. That page belongs to your project and session. Keep the agent conversation active alongside it. In supported live sessions, the agent listens for your browser submissions and returns results without requiring you to type “continue” after each submission.
 
 ### Answer the questions that affect your app
 
@@ -81,21 +84,23 @@ You can select an option, write your own answer, say you are unsure, or explicit
 
 Press Submit or Save to record each answer. A highlighted recommendation, a typed draft, or an unanswered question does not count as a decision. “I'm unsure” keeps that question open; delegation tells the agent it may choose and explain why.
 
-### Return to chat to start the build
+### Submit while the agent is listening
 
-After submitting, return to the same agent conversation and ask it to continue with your saved answers. If you have several sessions, name the one you mean. The agent reads the current submissions before doing work that depends on them.
+Check the connection status on the page. During an active live session, the agent keeps a waiting command open. Your submitted answers return to that same agent, which reads the current session and continues once the required choices are resolved. Partial answers and “I'm unsure” leave those questions open. If the agent offers help with an open choice, that help does not supply an answer for you.
 
-The browser does not start or notify a coding agent. “Waiting for the agent” means your answers are saved and you need to continue the conversation. Progress messages appear when the agent records a work update. If the page says “No recent agent update,” check the conversation; that message does not mean the build has finished.
+The live path has been verified in one Codex foreground-execution environment. Other hosts need their own connection trial. A running page alone does not mean the agent is listening, and closing the conversation stops the agent's ability to consume new submissions.
+
+If the agent is disconnected or the host cannot support live listening, your submissions remain saved. Return to the same conversation and ask it to reconnect to the named project/session or continue through the manual handoff. Progress messages describe recorded work; a stale message does not mean the build is finished.
 
 ### Try the app, then give feedback
 
 The agent returns a working app URL and registers a result on the review page. The review page checks for updates and offers View new result when another result is available. Its embedded preview shows the design in a scriptless sandbox. Open the separate app URL to try buttons, navigation, forms, and other behavior.
 
-When something needs changing, choose the relevant screen, option, or result in the feedback form. Describe what happened and what you want instead, then press Send feedback. For example, explain which text is hard to read or where you expected an action to take you. Return to chat and ask the agent to apply that feedback. It should retain your earlier decisions, make the requested correction, and return a new result for review.
+When something needs changing, choose the relevant screen, option, or result in the feedback form. Describe what happened and what you want instead, then press Send feedback. For example, explain which text is hard to read or where you expected an action to take you. While the live listener is active, the agent receives the feedback and returns a revision. If it is disconnected, return to chat and ask it to reconnect or consume the saved feedback. It should retain your earlier decisions, make the requested correction, and return a new result for review.
 
 ![Onboarding page with saved answers, the dating-site result and feedback controls](docs/screenshots/onboarding-review.jpg)
 
-The screenshot shows a result ready for review with acceptance still pending. Choosing a visual direction and sending feedback are separate from accepting the finished result.
+This historical screenshot shows the earlier review interface with acceptance still pending; it does not show the current live connection states. Choosing a visual direction and sending feedback are separate from accepting the finished result.
 
 ### Accept a result when you are satisfied
 
@@ -107,9 +112,9 @@ Acceptance applies to that result. It does not publish the app, deploy anything,
 
 Submitted answers, feedback, and results survive a server restart. Unsaved drafts stay on the current page while you submit other answers or pause and resume, but reloading or closing the page discards those drafts. Save anything you want to keep before leaving.
 
-Ask the agent to resume the same project and session. It should provide the exact startup and resume commands for your trial and reuse the saved context. If you paused the session, use Resume session before continuing. Closing the page, stopping its server, or leaving a question unanswered supplies no decision or approval.
+Ask the agent to resume the same project and session. It should provide the exact startup and resume commands for your trial and reuse the saved context. If you paused the session, use Resume session before continuing and ask the agent to reconnect its listener. Resuming in the browser does not wake a stopped agent. Closing the page, stopping its server, or leaving a question unanswered supplies no decision or approval.
 
-Keep session files in your app's local working area. The agent should report the project, session, URLs, and start/stop/resume commands so another conversation can pick up the work. The CLI details are in [interactive.md](packages/ui-delivery/references/interactive.md), and `help` prints its interface.
+Keep session files in your app's local working area. The agent should report the project, session, URLs, and start/stop/resume commands so another conversation can pick up the work. The CLI details are in [interactive.md](packages/ui-delivery/references/interactive.md), with connection and recovery steps in [live.md](packages/ui-delivery/references/live.md). The CLI `help` command prints its interface.
 
 ### When browser onboarding is unnecessary
 
@@ -119,6 +124,7 @@ You can ask to answer in chat or explicitly delegate design decisions. Tiny edit
 
 - Task hierarchy, product identity, new-app visual direction, existing components and visual systems.
 - Contextual design critique and ordinary-language feedback: calmness, density, action clarity, phone use and style changes.
+- Active browser feedback in the verified Codex host, with saved manual handoff when listening is unavailable.
 - Forms, saving, recovery, navigation, and context restoration.
 - Metrics, tables, charts, truthful data states, and optional motion.
 - Product copy, browser accessibility checks, and scoped verification.
@@ -137,7 +143,7 @@ python3 scripts/build.py
 python3 scripts/check_distribution.py
 ```
 
-The ZIP contains only `ui-delivery/`. All 28 package files match the local 0.11.0 delivery. Previous versioned archives are retained; `dist/manifest.json` identifies the current distribution. Repository documentation and the distribution check are separate additions.
+The ZIP contains only `ui-delivery/`. All 30 package files match the local 0.12.1 delivery. Previous versioned archives are retained; `dist/manifest.json` identifies the current distribution. Repository documentation and the distribution check are separate additions.
 
 No open-source license has been selected or included in this peer-test package. A private testing repository is not an announcement of an open-source release. Source attribution and retrieval limits are preserved in [the source registry](packages/ui-delivery/references/sources.json).
 

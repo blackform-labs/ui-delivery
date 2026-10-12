@@ -2,7 +2,7 @@
 
 Try one fresh app with no project history, then ask for one specific correction. The practical success condition is that you can complete onboarding, get a working app based on your answers, and review a correction without the author coaching each step.
 
-Record whether the agent opened the actual onboarding tool, asked useful questions, consumed your answers, explained delegated choices, returned a working app, and retained the earlier decisions after correction. Note confusing transitions between the browser and chat. Do not submit acceptance just to complete a test.
+Record whether the agent opened the actual onboarding tool, asked useful questions, consumed your answers, explained delegated choices, returned a working app, and retained the earlier decisions after correction. Check whether submitted answers and feedback reach the active agent without a chat reminder, and whether a disconnected listener is clearly shown. Note confusing transitions between the browser and chat. Do not submit acceptance just to complete a test.
 
 ## Evidence and known limits
 
@@ -18,7 +18,11 @@ The local 0.11.0 critique/refinement slice evaluated three isolated fictional pr
 
 Still unverified: screen-reader speech, physical touch devices, other browser engines, native app runtimes, representative-device performance, and real-service integrations. An earlier review-shell test did not establish complete keyboard-only feedback-target selection. Accessibility automation does not establish complete conformance. These limits should guide peer testing, not be silently marked passed.
 
-Browser submissions require manual continuation in the agent conversation. Review previews are scriptless. The local server binds to loopback and trusts local OS users; it is not a shared hosted application.
+The local 0.12.0 delivery reports 20 live lifecycle groups, 25 interaction regressions, 39 current record checks, 10 live-record checks, 8 copy checks and 28 final browser assertions. Independent review covered 8 protocol groups and 18 rendered assertions. These counts describe separate, sometimes overlapping checks. A real active agent consumed synthetic browser answers and feedback, built a result, and produced a revision. A separate owner review recorded real answers, explicit delegation and acceptance of one result; no owner change request or framework acceptance was inferred.
+
+The 0.12.1 help-message correction reran 20 lifecycle groups and 39 record checks, with 9 independent follow-up checks and inspection of the affected desktop/narrow states. The full 0.12.0 browser matrix was not repeated for that narrow fix. Source, archive and documentation integrity are checked for this repository synchronization; those product/browser suites are historical evidence and are not rerun here.
+
+Live delivery requires an active agent servicing its foreground listener. Only the recorded Codex host has end-to-end evidence. Closing the conversation stops consumption; saved manual handoff remains available. Leases and acknowledgements protect session bookkeeping and result publication, but cannot guarantee exactly-once application edits. Review previews are scriptless. The local server binds to loopback and trusts local OS users; it is not a shared hosted application.
 
 ## Report a finding
 

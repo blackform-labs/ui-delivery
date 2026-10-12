@@ -1,5 +1,9 @@
 # Package maintenance
 
+Revision 0.12.1 makes a current blocked agent message visible while material answers remain missing or unsure. The question gate and acceptance semantics stay unchanged. A real-owner live trial exposed the masked heading suggestions; the 0.12.0 archive remains retained.
+
+Revision 0.12.0 adds [bounded active browser feedback](live.md) through a foreground listening command, leased session ownership and recoverable consumption receipts in the existing profile. Legacy manual sessions remain readable. Live profiles require 0.12.0 for ownership enforcement; preserve them when rolling framework files back. Arbitrary application edits still require reconciliation after interruption. Host execution, rendered verification, independent agent review and human acceptance are distinct evidence.
+
 Revision 0.11.0 adds conditional [critique and refinement guidance](refinement.md), three isolated before/after evaluations and a local roadmap. Existing schemas, interaction runtime, browser/GSAP support and accepted-decision semantics are preserved. Agent continuation remains manual. Figma and richer collaboration are roadmap work only.
 
 Revision 0.10.0 adds conditional [new-app visual direction guidance](visual-direction.md). Existing profile fields, interaction contracts, browser/GSAP support and optional motion remain unchanged. Selection, feedback and result acceptance retain their separate meanings.
@@ -20,7 +24,7 @@ Revision 0.5.0 adds conditional [data-presentation guidance](data-presentation.m
 
 Revision 0.4.0 added the local [briefing/review workflow](interactive.md), optional schema-1 interaction context and conditional [product-copy guidance](product-copy.md). Node 22 or newer runs the dependency-free local tool. Existing browser adapter 3 and all other adapter records remain unchanged. No native support, installation or publication is added. Legacy profiles remain valid; historical evidence retains its original package revision.
 
-Package revision: **0.11.0**, experimental local browser/GSAP slice. Record schema: **1**. The structured [rule catalog](rules.json) is canonical for this package; the Phase 1 prose catalog is a historical input. The bundled [source registry](sources.json) is the package's pinned authority; it preserves earlier retrieval scope and records targeted Phase 3A source refreshes. No upstream manuals or third-party skill bodies are bundled.
+Package revision: **0.12.1**, experimental local browser/GSAP slice. Record schema: **1**. The structured [rule catalog](rules.json) is canonical for this package; the Phase 1 prose catalog is a historical input. The bundled [source registry](sources.json) is the package's pinned authority; it preserves earlier retrieval scope and records targeted Phase 3A source refreshes. No upstream manuals or third-party skill bodies are bundled.
 
 Resolve conflicts by applicability, adopted commitments, and installed versions. Preserve compatible product decisions; expose unresolved incompatibilities. Product preferences cannot turn a failed accessibility criterion into a pass. Recheck version-sensitive APIs against the installed runtime before using them; summaries and landing pages do not certify an entire platform. Live source changes require a reviewed package revision and targeted evaluation, not silent replacement of accepted decisions. Review sources quarterly or when upstream changes invalidate guidance; no scheduler is installed.
 

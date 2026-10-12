@@ -2,7 +2,7 @@
 name: ui-delivery
 description: Shape, implement, review, or verify user interfaces using task hierarchy, product identity, platform routing, and scoped evidence. Use for new UI work and improvements to existing screens, including tiny edits. Excludes backend-only work.
 metadata:
-  version: 0.11.0
+  version: 0.12.1
 ---
 
 # UI delivery
@@ -17,7 +17,7 @@ Choose the next action by scope:
 - **Review only:** inspect the supplied screen and report concrete findings tied to the user's task, severity, evidence, and a scoped recommendation. Preserve product files. Use [rules.json](references/rules.json) for applicable criteria, not a universal checklist.
 - **Verification:** identify the claims and smallest sufficient checks using [evidence.md](references/evidence.md). A screenshot match proves stability, not quality or human acceptance.
 
-Collaboration gives users a clear opportunity to shape and review the work. Honor explicit requests for chat, skipped onboarding, delegated design or autonomous work. Fully specified work proceeds directly to implementation and review; tiny corrections skip redundant questions. Read [interactive.md](references/interactive.md) for browser setup, equivalent chat answers, visual choices, feedback and cross-process resume. A browser submission saves context; it does not launch a coding agent. When consuming ready submissions, use the explicit `work` update in the interactive reference so the user can see actual progress, then register the result. Leave dependent work pending until required answers arrive, with an exact handoff. Direction selection, delegation, corrections, finished-result acceptance and framework acceptance have separate meanings.
+Collaboration gives users a clear opportunity to shape and review the work. Honor explicit requests for chat, skipped onboarding, delegated design or autonomous work. Fully specified work proceeds directly to implementation and review; tiny corrections skip redundant questions. Read [interactive.md](references/interactive.md) for browser setup and saved decisions. For an active browser feedback session, read [live.md](references/live.md): prove foreground tool delivery on the current host, connect the intended consumer, give the verified URL, and keep servicing bounded `listen` calls. Consume a fresh checkpoint/handoff, apply only authorized work supported by actual answers, publish truthful progress, register a fresh result, acknowledge processing and listen again. Leave dependent work pending until required answers arrive. Live listening cannot wake a closed conversation; retain the manual handoff when unavailable. Direction selection, delegation, feedback, finished-result acceptance and framework acceptance have separate meanings.
 
 When drafting or reviewing substantial visible prose, read [product-copy.md](references/product-copy.md). Use installed humanizer guidance in embedded mode when available, with the portable fallback otherwise. Preserve product voice, supported facts, uncertainty and string/data boundaries; keep tiny edits proportionate.
 

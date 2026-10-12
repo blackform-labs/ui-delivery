@@ -50,7 +50,9 @@ Result input:
 
 ## Agent continuation
 
-There is no live agent launcher or watcher. The page polls saved state for display only. Submitting answers or feedback persists them, shows a receipt and says Waiting for the agent until a current agent work event exists; it does not start coding. Tell the user to return to the coding-agent conversation and ask to continue the named session. In that follow-up, run `handoff --project DIR --session ID` using the same profile, read the current revision and actual submissions, then implement only the authorized change. If a required answer is pending, leave the verified review URL and exact startup/handoff commands and stop dependent work. Silence and elapsed time supply no answer. After a correction, register a fresh result and return it without asking for the same authorization again.
+For an active browser feedback session, follow [live.md](live.md): verify the host's foreground yielding/continuation path, connect one consumer, and keep servicing bounded listening calls. Explicit submissions saved before or during a wait return to that active agent. Read a fresh checkpoint/handoff before dependent work, register a current result, acknowledge processing and listen again. Missing required answers stay pending. A leased connection reports actual listening/processing separately from server availability. Browser polling only displays saved state; it cannot launch or wake a closed conversation.
+
+If live listening is unavailable or the user chooses chat, retain the manual handoff. Return to the coding-agent conversation with the named session, run `handoff --project DIR --session ID`, and implement only the authorized change supported by current submissions. If an active consumer exists, explicitly disconnect it before manual processing. Silence and elapsed time supply no answer. After an authorized correction, register a fresh result without asking for the same authorization again.
 
 Keep the selected project path, profile, session ID and task authorization in the handoff receipt so another conversation can resume. Use `start` to reopen a stopped browser server; use an explicit `resume` transaction only for a session the user paused. Preserve old results and acceptance events. Accepting a result applies to that result; framework acceptance requires a separate explicit owner statement.
 
@@ -78,6 +80,8 @@ If a process crashes mid-write, inspect `<profile>.ui-delivery.lock` and verify 
 The optional `interaction` field uses its own `schema_version: 1` and `sessions` map. Each session stores an immutable brief, revision, decision revision, open/cancelled status, append-only events and pinned result records. Unknown profile fields, provenance and accepted patterns are preserved. Acceptance events are scoped evidence; they do not silently add accepted product patterns. Legacy profiles can omit this field. Unknown interaction versions fail closed. Use the package validator for context integrity, and behavioral tests for the answer lifecycle.
 
 Version 0.9.0 reads existing schema-1 sessions without migration and adds the `unsure` answer mode. Use 0.9.0 or newer to resume sessions containing that mode; older tools may reject it. Keep those sessions intact if rolling the package back.
+
+Version 0.12.0 adds optional `session.live` version 1 for leased consumption and durable receipts. Legacy sessions remain valid without this field. Use 0.12.0 or newer to process live sessions; older tools do not enforce ownership. Preserve the profile and use the 0.12.0 archive when rolling framework files back. Connection/receipt changes do not advance decision history; owner answers, work and results keep their existing revisions and meanings.
 
 ## Visible work status (0.9.1)
 

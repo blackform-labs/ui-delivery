@@ -1,6 +1,6 @@
 # UI delivery roadmap
 
-Current source: 0.11.0, experimental. Checked October 11, 2026. This roadmap describes the next development stages. Browser/GSAP support remains limited to recorded runtimes; human task validation and framework acceptance are pending.
+Current source: 0.12.1, experimental. Checked October 11, 2026. This roadmap describes the next development stages. Browser/GSAP support remains limited to recorded runtimes; human task validation and framework acceptance are pending.
 
 ## A. Design critique and refinement
 
@@ -32,10 +32,10 @@ Dependencies: Stage A's observed feedback problems and the existing interaction 
 
 Completion criteria: a participant can identify the target, describe a change, inspect the revision and retain settled decisions with fewer unresolved targeting errors. Verify keyboard access, narrow layouts, session isolation, draft lifetime, stale revisions and restart/resume. Do not infer acceptance from a default, silence or cancellation.
 
-## D. Reliable continuation
+## D. Active browser continuation
 
-Purpose: close the preview-to-revision loop when the host supports it. Today the browser saves answers/feedback and polls saved status; it does not notify, launch or wake a coding agent. Users return to chat with the named project/session. [interactive.md](../packages/ui-delivery/references/interactive.md) remains the handoff authority.
+Implemented locally in 0.12.0, with a help-message correction in 0.12.1. A bounded foreground listener delivers explicit browser submissions to the active agent. One consumer owns a session at a time; saved delivery and completion records support recovery. The agent reads the current handoff, applies authorized work, registers a current result and listens again. See [live.md](../packages/ui-delivery/references/live.md) and [testing notes](TESTING.md).
 
-Dependencies: verified host notification/continuation capabilities and explicit ownership of a run. Investigate a submission signal, one authorized consumer per project/session, durable run identity, duplicate prevention, cancellation, crash recovery and resume against the current decision revision. Preserve immutable events and prior results. A notification alone is not execution proof; a work event alone is not completion proof.
+The live path has been verified in one Codex foreground-execution host. Browser polling or a running server alone does not establish listening. The listener cannot wake a closed conversation or launch an agent. Other hosts need their own submission-to-agent-to-result trial. The profile's `continuation.automatic` flag remains false because this active-session capability does not provide a detached continuation service.
 
-Completion criteria: an actual supported host submission reaches its owned consumer once, the consumer applies the saved feedback, a fresh result is registered, and duplicates/cancellation/stale input/crash/restart behave as specified. Test isolation, unsaved drafts, visible progress and manual fallback end to end. Keep `continuation.automatic` false until this path is implemented and verified. Automatic execution still provides no human acceptance or expanded authorization.
+Pending deliveries and results survive interruption/restart. The agent must reconcile application edits before retrying interrupted work. A separate owner trial accepted one fixture result; framework acceptance and broader participant validation remain pending. Optional Figma and peer-update tooling remain separate work.

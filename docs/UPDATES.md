@@ -22,7 +22,7 @@ These are write operations. The skill name and scope limit which installation re
 
 For a copy obtained manually, retain a backup and use the original installation instructions to replace that selected copy. For a checkout used directly by path, review local changes before pulling the repository. Your GitHub account still needs access to this private repository.
 
-Check `metadata.version` near the top of the installed `ui-delivery/SKILL.md`; it should be 0.11.0 for this delivery. [Official OpenAI guidance](https://learn.chatgpt.com/docs/build-skills) says to restart Codex if an updated skill does not appear. Use a fresh conversation for the separate peer trial.
+Check `metadata.version` near the top of the installed `ui-delivery/SKILL.md`; it should be 0.12.1 for this delivery. [Official OpenAI guidance](https://learn.chatgpt.com/docs/build-skills) says to restart Codex if an updated skill does not appear. Use a fresh conversation for the separate peer trial.
 
 ## Updates without the author messaging each peer
 

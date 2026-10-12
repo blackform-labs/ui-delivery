@@ -3,7 +3,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import http from 'node:http';
 import {fileURLToPath} from 'node:url';
-import {location,read,init,session,handoff,submit,result,work,activity,getAsset,need,digest} from './interaction.mjs';
+import {location,read,init,session,handoff,submit,result,work,activity,connection,getAsset,need,digest} from './interaction.mjs';
+import {connect,disconnect,listen,checkpoint,complete} from './live.mjs';
 const here=path.dirname(fileURLToPath(import.meta.url));
 
 export async function start(loc,id,port=0) {
@@ -24,7 +25,8 @@ export async function start(loc,id,port=0) {
         if(staticFiles[url.pathname]){const [file,type]=staticFiles[url.pathname];return send(200,fs.readFileSync(path.join(here,'review',file)),type);}
         if(url.pathname==='/api/state') {
           const s=session(loc,id),p=read(loc);
-          return send(200,{product_id:p.product_id,session_id:id,context_id:contextId,...s,activity:activity(s)});
+          const {live,...publicState}=s;
+          return send(200,{product_id:p.product_id,session_id:id,context_id:contextId,...publicState,activity:activity(s),connection:connection(s)});
         }
         if(url.pathname.startsWith('/preview/')) {
           const a=getAsset(loc,id,url.pathname.slice(9));
@@ -42,6 +44,7 @@ export async function start(loc,id,port=0) {
         }
         if(url.pathname==='/api/stop'){
           need(!value.context_id||value.context_id===contextId,'This page belongs to a different session.',409);
+          const owner=session(loc,id).live?.owner;if(owner?.server_url===origin)disconnect(loc,id,owner.token);
           send(200,{stopped:true});server.close();return;
         }
       }
@@ -49,6 +52,7 @@ export async function start(loc,id,port=0) {
     }catch(e){send(e.status??400,{error:e.status?e.message:'Unable to read or save this request. Check the local context and try again.'});}
   });
   server.requestTimeout=5000;server.headersTimeout=5000;
+  server.on('close',()=>{try{const owner=session(loc,id).live?.owner;if(owner?.server_url===origin)disconnect(loc,id,owner.token);}catch{console.error('Server closed; ownership release could not be saved. Its lease will expire. Check the profile lock before reconnecting.');}});
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(port,'127.0.0.1',resolve);});
   origin='http://127.0.0.1:'+server.address().port;
   return {server,url:origin,close:()=>new Promise(r=>server.close(r))};
@@ -65,11 +69,22 @@ handoff --project DIR --session ID [--profile product-profile.json]
 submit --project DIR --session ID --input FILE [--profile product-profile.json]
 work --project DIR --session ID --input FILE [--profile product-profile.json]
 result --project DIR --session ID --input FILE [--profile product-profile.json]
+connect --project DIR --session ID --consumer NAME --owner FILE
+listen --project DIR --session ID --owner FILE --url URL [--timeout-ms 30000]
+checkpoint --project DIR --session ID --owner FILE --delivery ID
+complete --project DIR --session ID --owner FILE --input FILE
+disconnect --project DIR --session ID --owner FILE
+pause|resume --project DIR --session ID [--actor local-owner]
 stop --port PORT
-FILE is read from your current directory. Project writes are limited to the existing profile.
+Add --owner FILE --delivery ID to work/result during live mode. Completion input:
+{delivery_id, outcome: result|await-answers|reviewed|superseded|blocked|no-change, result_id?, message}.
+FILE is read from your current directory. connect writes the selected private ownership receipt.
+Other project writes are limited to the existing profile. All commands accept --profile.
 start resumes saved state; Ctrl+C or stop ends the server without supplying an answer.
-There is no live agent watcher. After submitting, return to your agent conversation;
-the agent runs handoff with the same project/profile/session before continuing.
+listen is a bounded foreground call that an active agent must service after host proof.
+It cannot launch an agent or wake a closed conversation. Timeout supplies no answer.
+Ctrl+C cancels the current wait; disconnect releases ownership; pause stops dependent work.
+Without live listening, return to chat and read a fresh handoff to continue.
 submit is the chat fallback: record only an explicit user's answer, with actor and current revision.
 See references/interactive.md for schemas, lock recovery and result handoff.`);return;
   }
@@ -80,11 +95,32 @@ See references/interactive.md for schemas, lock recovery and result handoff.`);r
   }
   need(opts.project&&opts.session,'Project and session are required.');
   const loc=location(opts.project,opts.profile),input=key=>JSON.parse(fs.readFileSync(opts[key],'utf8'));
+  const owner=()=>{
+    const o=input('owner');need(o.project===loc.project&&o.profile===loc.profile&&o.session_id===opts.session,'Ownership receipt belongs to another project/session.',409);return o;
+  };
+  const ownedInput=()=>({...input('input'),...(opts.owner?{live_token:owner().token,delivery_id:opts.delivery}:{})});
   if(command==='init')console.log(JSON.stringify({session:init(loc,opts.session,input('brief'))}));
   else if(command==='handoff')console.log(JSON.stringify(handoff(loc,opts.session),null,2));
   else if(command==='submit')console.log(JSON.stringify(submit(loc,opts.session,input('input'))));
-  else if(command==='work')console.log(JSON.stringify(work(loc,opts.session,input('input'))));
-  else if(command==='result')console.log(JSON.stringify(result(loc,opts.session,input('input'))));
+  else if(command==='work')console.log(JSON.stringify(work(loc,opts.session,ownedInput())));
+  else if(command==='result')console.log(JSON.stringify(result(loc,opts.session,ownedInput())));
+  else if(command==='connect'){
+    need(opts.owner,'Choose a private --owner FILE.');
+    if(fs.existsSync(opts.owner)){need(!fs.lstatSync(opts.owner).isSymbolicLink(),'Symlink ownership receipts are unsupported.');owner();}
+    const connected=connect(loc,opts.session,opts.consumer),receipt={...connected,project:loc.project,profile:loc.profile};
+    fs.writeFileSync(opts.owner,JSON.stringify(receipt,null,2)+'\n',{mode:0o600});fs.chmodSync(opts.owner,0o600);
+    const {token,...visible}=connected;console.log(JSON.stringify({...visible,owner_file:opts.owner}));
+  }
+  else if(command==='listen'){
+    const controller=new AbortController();const abort=()=>controller.abort();
+    process.once('SIGINT',abort);process.once('SIGTERM',abort);
+    try{console.log(JSON.stringify(await listen(loc,opts.session,owner().token,opts.url,{timeoutMs:Number(opts['timeout-ms']??30000),signal:controller.signal}),null,2));}
+    finally{process.removeListener('SIGINT',abort);process.removeListener('SIGTERM',abort);}
+  }
+  else if(command==='checkpoint')console.log(JSON.stringify(checkpoint(loc,opts.session,owner().token,opts.delivery),null,2));
+  else if(command==='complete')console.log(JSON.stringify(complete(loc,opts.session,{...input('input'),token:owner().token})));
+  else if(command==='disconnect')console.log(JSON.stringify(disconnect(loc,opts.session,owner().token)));
+  else if(command==='pause'||command==='resume')console.log(JSON.stringify(submit(loc,opts.session,{request_id:crypto.randomUUID(),base_revision:session(loc,opts.session).revision,actor:opts.actor??'local-owner',type:command==='pause'?'cancel':'resume'})));
   else if(command==='start'){
     const port=Number(opts.port??0);need(Number.isInteger(port)&&port>=0&&port<=65535,'Invalid port.');
     const running=await start(loc,opts.session,port);console.log(running.url+' — '+opts.session+'; Ctrl+C to stop.');

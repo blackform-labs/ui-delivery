@@ -9,7 +9,7 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
-VERSION = '0.11.0'
+VERSION = '0.12.1'
 METHODS = {'automated', 'design-review', 'human-task'}
 ID = re.compile(r'^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$')
 
@@ -62,11 +62,11 @@ def schema(value, where):
          f'{where}: unsupported schema_version')
 
 
-def unknowns(value):
+def unknowns(value, known_absences=()):
     reasons = value.get('unknown_reasons', {})
     need(isinstance(reasons, dict), 'unknown_reasons: expected object')
     def walk(node, path=''):
-        if node is None:
+        if node is None and path not in known_absences:
             string(reasons.get(path), f'{path}: null needs unknown_reasons entry')
         elif isinstance(node, dict):
             for key, child in node.items():
@@ -194,7 +194,17 @@ def validate_package(package):
 def validate_profile(profile, artifact_root):
     schema(profile, 'profile')
     obj(profile, 'product_id audience primary_tasks surfaces identity_references constraints existing_components accepted_patterns acceptance_owner', 'profile')
-    unknowns(profile)
+    # These live-contract nulls mean explicitly absent, not unknown product facts.
+    absent = set()
+    interaction = profile.get('interaction', {})
+    if isinstance(interaction, dict) and isinstance(interaction.get('sessions', {}), dict):
+        for sid, session in interaction.get('sessions', {}).items():
+            if isinstance(session, dict) and isinstance(session.get('live'), dict):
+                prefix = f'interaction.sessions.{sid}.live'
+                absent.update({prefix + '.owner', prefix + '.owner.wait_id'})
+                if isinstance(session['live'].get('receipts'), list):
+                    absent.update(f'{prefix}.receipts.{i}.result_id' for i in range(len(session['live']['receipts'])))
+    unknowns(profile, absent)
     if 'interaction' in profile:
         validate_interaction(profile['interaction'], artifact_root)
     need(isinstance(profile['product_id'], str) and ID.fullmatch(profile['product_id']), 'profile: invalid product_id')
@@ -277,6 +287,45 @@ def validate_interaction(value, root):
                 need(event.get('decision') in {'accepted', 'rejected'}, 'invalid acceptance')
                 need(any(r['id'] == event.get('result_id') for r in session['results']), 'acceptance lacks result')
         need(session['revision'] == len(seen), 'session revision differs from history')
+        if 'live' in session:
+            live = session['live']
+            schema(live, 'live')
+            obj(live, 'mode owner receipts', 'live')
+            need(live['mode'] in {'active', 'manual'}, 'invalid live mode')
+            owner = live['owner']
+            if owner is not None:
+                obj(owner, 'actor token wait_id state updated_at expires_at', 'live.owner')
+                for field in ['actor', 'token', 'updated_at']:
+                    string(owner[field], 'owner.' + field)
+                need(type(owner['expires_at']) is int and owner['state'] in {'idle', 'waiting', 'received', 'processing'}, 'invalid live lease')
+            delivered, delivery_ids, processing = set(), set(), 0
+            for receipt in array(live['receipts'], 'live.receipts'):
+                obj(receipt, 'id event_ids decision_revision basis_revision status attempts owner_token', 'receipt')
+                string(receipt['id'], 'receipt.id')
+                string(receipt['owner_token'], 'receipt.owner_token')
+                need(receipt['id'] not in delivery_ids, 'duplicate delivery ID')
+                delivery_ids.add(receipt['id'])
+                need(receipt['status'] in {'processing', 'completed'}, 'invalid receipt status')
+                processing += receipt['status'] == 'processing'
+                for field, maximum in [('decision_revision', session['decision_revision']), ('basis_revision', session['revision'])]:
+                    need(type(receipt[field]) is int and 0 <= receipt[field] <= maximum, 'invalid delivery basis')
+                for eid in array(receipt['event_ids'], 'receipt.event_ids', True):
+                    need(eid not in delivered and any(e['request_id'] == eid and e['type'] in {'answer', 'feedback', 'acceptance', 'resume'} and e['channel'] in {'chat', 'browser'} for e in session['events']), 'invalid or overlapping delivered event')
+                    delivered.add(eid)
+                for attempt in array(receipt['attempts'], 'receipt.attempts', True):
+                    obj(attempt, 'consumer at', 'attempt')
+                    string(attempt['consumer'], 'attempt.consumer')
+                    string(attempt['at'], 'attempt.at')
+                if receipt['status'] == 'completed':
+                    obj(receipt, 'outcome result_id message completed_at', 'completion')
+                    need(receipt['outcome'] in {'result', 'await-answers', 'reviewed', 'superseded', 'blocked', 'no-change'}, 'invalid completion outcome')
+                    string(receipt['message'], 'completion.message')
+                    string(receipt['completed_at'], 'completion.completed_at')
+                    if receipt['outcome'] == 'result':
+                        need(any(r['id'] == receipt['result_id'] and r.get('delivery_id') == receipt['id'] and r['decision_revision'] == receipt['decision_revision'] for r in session['results']), 'completion lacks registered result')
+                    else:
+                        need(receipt['result_id'] is None, 'non-result completion names a result')
+            need(processing <= 1, 'competing active deliveries')
         previews = [s['preview'] for s in array(brief['screens'], 'screens')]
         previews += [o['preview'] for q in array(brief['questions'], 'questions') for o in q['options'] if 'preview' in o]
         for result in array(session['results'], 'results'):

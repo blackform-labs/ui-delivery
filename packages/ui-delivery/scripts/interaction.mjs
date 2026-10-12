@@ -44,9 +44,25 @@ export function validateInteraction(i) {
     need(['open','cancelled'].includes(s.status) && Array.isArray(s.events) && Array.isArray(s.results), 'Invalid session state.');
     need(s.events.length===s.revision && s.events.every((e,n)=>e.revision===n+1 && text(e.at) && text(e.actor) && text(e.request_id)), 'Invalid decision history.');
     need(new Set(s.events.map(e=>e.request_id)).size===s.events.length, 'Duplicate decision IDs.');
+    if(s.live){
+      const l=s.live;
+      need(l.schema_version===1&&['active','manual'].includes(l.mode)&&Array.isArray(l.receipts),'Unsupported live context.');
+      if(l.owner)need(text(l.owner.actor,100)&&text(l.owner.token,100)&&Number.isSafeInteger(l.owner.expires_at)&&text(l.owner.updated_at)&&['idle','waiting','received','processing'].includes(l.owner.state),'Invalid live owner.');
+      const delivered=new Set(),ids=new Set();
+      for(const d of l.receipts){
+        need(text(d.id,100)&&!ids.has(d.id)&&Array.isArray(d.event_ids)&&d.event_ids.length>0&&new Set(d.event_ids).size===d.event_ids.length,'Invalid delivery identity.');ids.add(d.id);
+        need(['processing','completed'].includes(d.status)&&Number.isSafeInteger(d.decision_revision)&&d.decision_revision>=0&&d.decision_revision<=s.decision_revision&&Number.isSafeInteger(d.basis_revision)&&d.basis_revision>=0&&d.basis_revision<=s.revision&&text(d.owner_token,100)&&Array.isArray(d.attempts)&&d.attempts.length>0&&d.attempts.every(a=>text(a.consumer,100)&&text(a.at)),'Invalid delivery state.');
+        for(const eid of d.event_ids){need(s.events.some(e=>e.request_id===eid&&['answer','feedback','acceptance','resume'].includes(e.type)&&['browser','chat'].includes(e.channel))&&!delivered.has(eid),'Invalid or overlapping delivered event.');delivered.add(eid);}
+        if(d.status==='completed'){
+          need(['result','await-answers','reviewed','superseded','blocked','no-change'].includes(d.outcome)&&text(d.message)&&text(d.completed_at),'Invalid completion.');
+          need(d.outcome==='result'?s.results.some(r=>r.id===d.result_id&&r.delivery_id===d.id&&r.decision_revision===d.decision_revision):d.result_id===null,'Completion lacks registered result or names an unrelated result.');
+        }
+      }
+      need(l.receipts.filter(d=>d.status==='processing').length<=1,'Competing active deliveries.');
+    }
   }
 }
-function transaction(loc, change) {
+export function transaction(loc, change) {
   const lock=loc.profile+'.ui-delivery.lock'; let fd;
   try { fd=fs.openSync(lock,'wx',0o600); } catch { throw new Invalid('Context is busy. Retry after the other write finishes. A lock left by a crash must be checked before removal.',409); }
   let tmp;
@@ -106,17 +122,41 @@ export function decisions(s) {
   const answers=Object.create(null);for(const e of s.events)if(e.type==='answer')answers[e.question_id]=e;
   return answers;
 }
+export function connection(s, now=Date.now()) {
+  const o=s.live?.owner;
+  return {mode:s.live?.mode??'manual',status:s.status==='cancelled'?'paused':!o?'disconnected':o.expires_at<=now?'stale':o.state,
+    consumer:o?.actor,updated_at:o?.updated_at,expires_at:o?.expires_at};
+}
+// A lease fences bookkeeping and result publication. It cannot fence arbitrary application edits.
+export function liveOwner(s, token) {
+  need(s.live?.mode==='active'&&s.live.owner?.token===token&&s.live.owner.expires_at>Date.now(),'Agent ownership expired or disconnected. Reconnect and reconcile the handoff.',409);
+  return s.live.owner;
+}
+export function liveDelivery(s, input) {
+  if(s.live?.mode!=='active'&&!input.live_token&&!input.delivery_id)return;
+  liveOwner(s,input.live_token);
+  const d=s.live.receipts.find(d=>d.id===input.delivery_id);
+  need(d?.status==='processing'&&d.owner_token===input.live_token,'Claim this submission before working.',409);
+  need(d.decision_revision===s.decision_revision,'Newer submissions arrived. Reconcile the current handoff before dependent work.',409);
+  return d;
+}
 // Activity is evidence of an explicit agent update, not a background job launcher.
 export function activity(s, now=Date.now()) {
   const answers=decisions(s),pending=s.brief.scope==='material'&&s.brief.questions.some(q=>q.material&&(!answers[q.id]||answers[q.id].mode==='unsure'));
   const r=s.results.at(-1),w=s.events.filter(e=>e.type==='work'&&e.decision_revision===s.decision_revision).at(-1);
   if(s.status==='cancelled')return {status:'paused',title:'Session paused',message:'Resume when you are ready. Your saved answers and feedback are still here.'};
-  if(pending)return {status:'awaiting-answers',title:'A few choices remain',message:'Saved answers stay saved. Complete or delegate the open choices before the agent can build.'};
+  if(pending)return {status:'awaiting-answers',title:w?.status==='blocked'?'Help with the open choices':'A few choices remain',message:w?.status==='blocked'?w.message:'Saved answers stay saved. Complete or delegate the open choices before the agent can build.',...(w?.status==='blocked'?{updated_at:w.at}:{})};
   if(r?.decision_revision===s.decision_revision){
     const acceptance=s.events.filter(e=>e.type==='acceptance'&&e.result_id===r.id).at(-1);
     if(acceptance?.decision==='accepted')return {status:'accepted',title:'Result accepted',message:'Your acceptance is saved. This review is complete. You can use the delivered app or request another change below.',result_id:r.id};
-    if(acceptance?.decision==='rejected')return {status:'rejected',title:'Result rejected',message:'Your rejection is saved. Tell the agent what needs to change using the feedback form below, then continue your conversation.',result_id:r.id};
+    if(acceptance?.decision==='rejected')return {status:'rejected',title:'Result rejected',message:'Your rejection is saved. Use the feedback form below to describe what needs to change.',result_id:r.id};
     return {status:'ready',title:'Your result is ready',message:'Review the result below. You can request another change or explicitly accept this result.',result_id:r.id};
+  }
+  const c=connection(s,now);
+  if(s.live?.mode==='active'){
+    if(c.status==='waiting')return {status:'listening',title:'Agent connected and waiting',message:'Your next submitted answer or feedback will return to the active agent. Open choices still need an answer or explicit delegation.'};
+    if(c.status==='received')return {status:'received',title:'Agent received this submission',message:'The active agent must read the current saved answers before starting work.'};
+    if(c.status==='stale'||c.status==='idle')return {status:'disconnected',title:'Agent disconnected; answers remain saved',message:'The listening lease is idle or expired. Return to the agent conversation to reconnect and reconcile saved work.'};
   }
   if(w){
     if(w.status==='blocked')return {status:'blocked',title:'The agent needs your attention',message:w.message,updated_at:w.at};
@@ -126,11 +166,13 @@ export function activity(s, now=Date.now()) {
   return {status:'waiting',title:'Saved. Waiting for the agent',message:'Return to your coding-agent conversation and say “Continue '+s.id+'”. Your answers and feedback are saved; submitting here does not automatically start the agent.'};
 }
 export function work(loc,id,input) {
-  keys(input,['base_revision','actor','status','message']);
+  keys(input,['base_revision','actor','status','message','live_token','delivery_id']);
   need(Number.isSafeInteger(input.base_revision)&&text(input.actor,100)&&['working','blocked'].includes(input.status)&&text(input.message,500),'Work update needs revision, actor, status and message.');
   return transaction(loc,p=>{
     const s=p.interaction?.sessions?.[id];need(s,'Session not found.',404);
     need(s.status==='open'&&s.revision===input.base_revision,'Work update is stale or session is paused.',409);
+    liveDelivery(s,input);
+    if(input.live_token){const o=s.live.owner;o.state='processing';o.updated_at=new Date().toISOString();o.expires_at=Date.now()+120000;}
     const answers=decisions(s);
     need(input.status!=='working'||s.brief.scope!=='material'||s.brief.questions.every(q=>!q.material||(answers[q.id]&&answers[q.id].mode!=='unsure')),'Material answers are still pending.',409);
     const e={type:'work',request_id:randomUUID(),revision:s.revision+1,decision_revision:s.decision_revision,at:new Date().toISOString(),actor:input.actor,channel:'agent',status:input.status,message:input.message};
@@ -146,7 +188,7 @@ export function handoff(loc,id) {
     brief:s.brief,answers,feedback:s.events.filter(e=>e.type==='feedback'),pending:pending.map(q=>q.id),
     next_action:s.status==='cancelled'?'paused':pending.length?'await-answers':latest?.decision_revision===s.decision_revision?'review-result':'implement',
     activity:activity(s),results:s.results,acceptance:acceptance??{decision:'pending'},
-    continuation:{automatic:false,trigger:'Return to the coding-agent conversation and ask to continue this session; the agent must read a fresh handoff.'},
+    continuation:{automatic:false,active_session_supported:true,connection:connection(s),trigger:'Use a serviced foreground listen command while the agent is active; otherwise return to chat and read a fresh handoff. No closed-conversation wakeup.'},
     instruction:'Use submitted decisions and scoped feedback; delegated choices require an agent rationale. Acceptance applies only to its named result. No response supplies no approval.'};
 }
 export function submit(loc,id,input,channel='chat') {
@@ -177,18 +219,22 @@ export function submit(loc,id,input,channel='chat') {
       need(r && r.id===input.result_id && r.decision_revision===s.decision_revision,'Review the current result before recording acceptance.',409);
       need(['accepted','rejected'].includes(input.decision),'Choose an explicit acceptance decision.');
       Object.assign(event,{result_id:r.id,decision:input.decision});
-    } else if(input.type==='cancel') {s.status='cancelled';}
+    } else if(input.type==='cancel') {s.status='cancelled';if(s.live){s.live.owner=null;s.live.mode='manual';}}
     else if(input.type==='resume') {need(s.status==='cancelled','Session is already open.');s.status='open';}
     else throw new Invalid('Unsupported submission.');
+    event.decision_revision=s.decision_revision;
     s.events.push(event);s.revision++;return event;
   });
 }
 export function result(loc,id,input) {
-  keys(input,['base_revision','actor','summary','preview','decisions','feedback_resolutions']);
+  keys(input,['base_revision','actor','summary','preview','decisions','feedback_resolutions','live_token','delivery_id']);
   need(text(input.actor,100)&&text(input.summary)&&Array.isArray(input.decisions),'Result needs actor, summary and decision rationales.');
   const preview=asset(loc,input.preview);
   return transaction(loc,p=>{
     const s=p.interaction?.sessions?.[id];need(s,'Session not found.',404);
+    const delivery=liveDelivery(s,input);
+    const existing=delivery&&s.results.find(r=>r.delivery_id===delivery.id&&r.decision_revision===s.decision_revision);
+    if(existing)return existing;
     need(s.status==='open'&&s.revision===input.base_revision,'Result is stale or session is paused.',409);
     const answers=decisions(s);
     need(s.brief.scope!=='material'||s.brief.questions.every(q=>!q.material||(answers[q.id]&&answers[q.id].mode!=='unsure')),'Material answers are still pending.',409);
@@ -199,6 +245,7 @@ export function result(loc,id,input) {
     for(const f of resolutions){keys(f,['request_id','resolution']);need(feedback.some(e=>e.request_id===f.request_id)&&text(f.resolution),'Invalid feedback resolution.');}
     need(feedback.every(f=>resolutions.some(r=>r.request_id===f.request_id)),'Explain how each requested change was handled.');
     const r={id:'result-'+(s.results.length+1),at:new Date().toISOString(),basis_revision:s.revision,decision_revision:s.decision_revision,actor:input.actor,summary:input.summary,preview,decisions:input.decisions,feedback_resolutions:resolutions};
+    if(delivery)r.delivery_id=delivery.id;
     s.results.push(r);s.revision++;s.events.push({type:'result',request_id:randomUUID(),revision:s.revision,at:r.at,actor:input.actor,channel:'agent',result_id:r.id});return r;
   });
 }
