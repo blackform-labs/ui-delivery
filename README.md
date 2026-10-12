@@ -67,18 +67,53 @@ Keep the skill checkout unchanged. Do not deploy or publish the app.
 
 You can replace the app idea with your own. The agent should ask only questions that affect the work. Tiny or fully specified tasks can skip redundant interviews. You can request chat instead of browser onboarding or explicitly delegate a design decision.
 
-## How collaboration works
+## Your first onboarding session
 
-1. The agent prepares the project context and starts a local onboarding page.
-2. Submit each answer in the page. Typing a draft or seeing a recommendation does not submit an answer.
-3. Return to the coding-agent conversation and ask it to continue the named session. **Submitting browser answers does not launch or wake a coding agent.**
-4. The agent reads the saved handoff, builds the app, and supplies a runnable app URL plus a review result. The embedded review preview is scriptless; use the separate app URL to test behavior.
-5. Submit feedback against the result and return to chat to request the correction. The agent reads fresh feedback and registers the revised result.
-6. Accepting a result applies to that result. It does not accept the framework or publish the app.
+Open a separate project folder and start a conversation with your coding agent using the prompt above. Describe what you want to build, who will use it, and anything you already know about the design. You can include screenshots, reference sites, or existing brand assets. You do not need to know the framework or choose a component library first.
 
-Saved submissions survive server restarts. Unsaved drafts are lost on reload or page closure. “I'm unsure” leaves a decision pending; explicit delegation lets the agent choose and explain. Agent progress shown in the page reflects recorded work updates, not a background agent service.
+For a new app, the agent starts a local onboarding page and gives you its URL. That page belongs to your project and session. Keep the agent conversation open alongside it: you will move between the browser and chat as the work progresses.
 
-The agent must report the exact project, session, URL, and start/stop/resume commands for your trial. Commands and payloads are documented in [interactive.md](packages/ui-delivery/references/interactive.md), and `help` prints the CLI interface. Keep session files in your app's local working area, not in this repository.
+### Answer the questions that affect your app
+
+The page shows the project context and any open questions. The agent should reuse information you have already provided and ask only about choices that affect the work. In the dating-site example, the user chose an interactive demo and a warm, playful feel. Your project may need different questions.
+
+You can select an option, write your own answer, say you are unsure, or explicitly let the agent decide. If the visual direction is still open, the agent can show alternatives with comparable content and explain their tradeoffs. If you already have a design or a clear preference, it should use that direction without making you choose again.
+
+Press Submit or Save to record each answer. A highlighted recommendation, a typed draft, or an unanswered question does not count as a decision. “I'm unsure” keeps that question open; delegation tells the agent it may choose and explain why.
+
+### Return to chat to start the build
+
+After submitting, return to the same agent conversation and ask it to continue with your saved answers. If you have several sessions, name the one you mean. The agent reads the current submissions before doing work that depends on them.
+
+The browser does not start or notify a coding agent. “Waiting for the agent” means your answers are saved and you need to continue the conversation. Progress messages appear when the agent records a work update. If the page says “No recent agent update,” check the conversation; that message does not mean the build has finished.
+
+### Try the app, then give feedback
+
+The agent returns a working app URL and registers a result on the review page. The review page checks for updates and offers View new result when another result is available. Its embedded preview shows the design in a scriptless sandbox. Open the separate app URL to try buttons, navigation, forms, and other behavior.
+
+When something needs changing, choose the relevant screen, option, or result in the feedback form. Describe what happened and what you want instead, then press Send feedback. For example, explain which text is hard to read or where you expected an action to take you. Return to chat and ask the agent to apply that feedback. It should retain your earlier decisions, make the requested correction, and return a new result for review.
+
+![Onboarding page with saved answers, the dating-site result and feedback controls](docs/screenshots/onboarding-review.jpg)
+
+The screenshot shows a result ready for review with acceptance still pending. Choosing a visual direction and sending feedback are separate from accepting the finished result.
+
+### Accept a result when you are satisfied
+
+Use Accept this result after reviewing the current work. The page shows the saved decision and timestamp. If you reject it, add specific feedback so the agent knows what to change. Revised answers, new feedback, or a new result require another review; an earlier acceptance does not carry forward.
+
+Acceptance applies to that result. It does not publish the app, deploy anything, or accept the whole ui-delivery framework.
+
+### Leave and resume without starting over
+
+Submitted answers, feedback, and results survive a server restart. Unsaved drafts stay on the current page while you submit other answers or pause and resume, but reloading or closing the page discards those drafts. Save anything you want to keep before leaving.
+
+Ask the agent to resume the same project and session. It should provide the exact startup and resume commands for your trial and reuse the saved context. If you paused the session, use Resume session before continuing. Closing the page, stopping its server, or leaving a question unanswered supplies no decision or approval.
+
+Keep session files in your app's local working area. The agent should report the project, session, URLs, and start/stop/resume commands so another conversation can pick up the work. The CLI details are in [interactive.md](packages/ui-delivery/references/interactive.md), and `help` prints its interface.
+
+### When browser onboarding is unnecessary
+
+You can ask to answer in chat or explicitly delegate design decisions. Tiny edits and fully specified tasks can proceed directly to implementation and review. The agent should explain a concrete limitation if it cannot run the local browser tool, and use your actual chat answers to continue within the agreed scope.
 
 ## What is covered
 
