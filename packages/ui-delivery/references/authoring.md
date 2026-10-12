@@ -1,5 +1,7 @@
 # Package maintenance
 
+Revision 0.11.0 adds conditional [critique and refinement guidance](refinement.md), three isolated before/after evaluations and a local roadmap. Existing schemas, interaction runtime, browser/GSAP support and accepted-decision semantics are preserved. Agent continuation remains manual. Figma and richer collaboration are roadmap work only.
+
 Revision 0.10.0 adds conditional [new-app visual direction guidance](visual-direction.md). Existing profile fields, interaction contracts, browser/GSAP support and optional motion remain unchanged. Selection, feedback and result acceptance retain their separate meanings.
 
 Revision 0.9.2 makes submission receipts and actual agent activity visible in the browser. Read-only polling offers new results without discarding drafts. Explicit agent work events distinguish waiting, working, blocked and stale updates; no background agent launcher is added. Existing records remain readable; sessions with work events require 0.9.2 or newer.
@@ -18,7 +20,7 @@ Revision 0.5.0 adds conditional [data-presentation guidance](data-presentation.m
 
 Revision 0.4.0 added the local [briefing/review workflow](interactive.md), optional schema-1 interaction context and conditional [product-copy guidance](product-copy.md). Node 22 or newer runs the dependency-free local tool. Existing browser adapter 3 and all other adapter records remain unchanged. No native support, installation or publication is added. Legacy profiles remain valid; historical evidence retains its original package revision.
 
-Package revision: **0.10.0**, experimental local browser/GSAP slice. Record schema: **1**. The structured [rule catalog](rules.json) is canonical for this package; the Phase 1 prose catalog is a historical input. The bundled [source registry](sources.json) is the package's pinned authority; it preserves earlier retrieval scope and records targeted Phase 3A source refreshes. No upstream manuals or third-party skill bodies are bundled.
+Package revision: **0.11.0**, experimental local browser/GSAP slice. Record schema: **1**. The structured [rule catalog](rules.json) is canonical for this package; the Phase 1 prose catalog is a historical input. The bundled [source registry](sources.json) is the package's pinned authority; it preserves earlier retrieval scope and records targeted Phase 3A source refreshes. No upstream manuals or third-party skill bodies are bundled.
 
 Resolve conflicts by applicability, adopted commitments, and installed versions. Preserve compatible product decisions; expose unresolved incompatibilities. Product preferences cannot turn a failed accessibility criterion into a pass. Recheck version-sensitive APIs against the installed runtime before using them; summaries and landing pages do not certify an entire platform. Live source changes require a reviewed package revision and targeted evaluation, not silent replacement of accepted decisions. Review sources quarterly or when upstream changes invalidate guidance; no scheduler is installed.
 

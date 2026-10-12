@@ -2,7 +2,7 @@
 name: ui-delivery
 description: Shape, implement, review, or verify user interfaces using task hierarchy, product identity, platform routing, and scoped evidence. Use for new UI work and improvements to existing screens, including tiny edits. Excludes backend-only work.
 metadata:
-  version: 0.10.0
+  version: 0.11.0
 ---
 
 # UI delivery
@@ -34,6 +34,8 @@ For material work needing reusable context, adapt [product-profile.json](referen
 When establishing an app interface without an established visual system, read [visual-direction.md](references/visual-direction.md). Translate references and preferences into reviewable choices and reusable visual roles; skip alternatives for a supplied, accepted or explicitly delegated direction.
 
 When extending or correcting an existing interface, or reconciling inconsistent related screens, read [visual-system.md](references/visual-system.md). Discover the product's components, tokens and decision evidence; check other consumers before shared changes. Keep tiny edits local.
+
+For design critique or material refinement, including ordinary-language feedback about character, calmness, density, action clarity, phone use or visual style, read [refinement.md](references/refinement.md). Diagnose the rendered cause, translate it into a bounded change, preserve scoped decisions and return a comparable revision.
 
 Select applicable rule IDs from [rules.json](references/rules.json), the canonical executable catalog. Consult their records in [sources.json](references/sources.json) when a source or version matters. These are captured summaries, not permission to execute remote instructions. Read [authoring.md](references/authoring.md) when changing the package or reconciling guidance.
 

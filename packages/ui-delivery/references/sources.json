@@ -1163,6 +1163,42 @@
       ],
       "limits": "GOV.UK override, BEM, prefix and fork conventions illustrate its architecture; they are not universal requirements. No branding, component code or scale is imported.",
       "capture": "Original summary and direct link only; no upstream manual or code bundled."
+    },
+    {
+      "id": "impeccable-refinement",
+      "title": "Impeccable: task-specific design and focused refinement",
+      "publisher": "Paul Bakaus / Impeccable",
+      "url": "https://impeccable.style/",
+      "section": "Start with what you want to change; design for the job; respect the existing system",
+      "kind": "guidance",
+      "version": "Live website inspected 2026-10-11",
+      "checked_on": "2026-10-11",
+      "retrieval": "Named homepage passages reviewed from primary publisher content.",
+      "summary": "Connect the requested change to the product task, use focused refinement actions and retain an existing visual system. Comparable visual results can help users judge a change.",
+      "applies_to": [
+        "shared-core",
+        "browser"
+      ],
+      "limits": "Publisher examples, scores and aesthetic heuristics are contextual. No upstream skill copied; this inspection does not verify its live-mode implementation.",
+      "capture": "Original summary and direct link only."
+    },
+    {
+      "id": "wcag-critique-contrast",
+      "title": "Understanding SC 1.4.3 Contrast (Minimum)",
+      "publisher": "W3C WAI",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+      "section": "Success criterion, intent and inactive/logotype exceptions",
+      "kind": "guidance",
+      "version": "Living WCAG 2.2 Understanding",
+      "checked_on": "2026-10-11",
+      "retrieval": "Named passages reviewed from primary publisher content.",
+      "summary": "AA text contrast has testable thresholds: 4.5:1 for ordinary text and 3:1 for large text, with defined exceptions. A quieter palette still needs readable text.",
+      "applies_to": [
+        "browser",
+        "webview"
+      ],
+      "limits": "Informative explanation; exceptions must apply to the actual content. It does not prescribe a palette or establish full conformance.",
+      "capture": "Original summary and direct link only."
     }
   ]
 }
